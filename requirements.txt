@@ -11,3 +11,4 @@ openai
 dask
 sqlalchemy
 psycopg2-binary
+huggingface_hub
