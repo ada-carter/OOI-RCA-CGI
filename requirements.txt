@@ -1,0 +1,15 @@
+streamlit
+matplotlib
+pandas
+xarray
+netCDF4
+requests
+chromadb
+faiss-cpu
+llama-cpp-python
+flake8
+huggingface-hub
+openai
+dask
+sqlalchemy
+psycopg2-binary

@@ -1,0 +1,42 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Streamlit secrets (real credentials — NEVER commit)
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Data and databases
+*.sqlite
+*.db
+
+# Project data (user-generated, ephemeral)
+/projects/*
+!/projects/.gitkeep
+
+# Root-level dev/test scripts
+/test_*.py
+/scratch/
+/run.bat
+
+# Dev notes (not for repo)
+/projectplans.md
+/global_context.md
+
+# IDEs
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db

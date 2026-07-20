@@ -1,0 +1,1248 @@
+# OOI Regional Cabled Array (RCA) Instrumentation Context
+
+This document lists all available subsites, nodes, sensors, delivery methods, and streams for the RCA.
+Use this to constrain your M2M download scripts to valid endpoints.
+## Subsite: `RS01SBPD`
+### Node: `PD01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+### Node: `DP01A`
+- **Sensor**: `00-ENG000000`
+  - Method: `bad_recovered_wfp`
+    - Stream: `dpc_mmp_instrument_recovered`
+  - Method: `recovered_inst`
+    - Stream: `dpc_mmp_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_mmp_instrument_recovered`
+- **Sensor**: `01-CTDPFL104`
+  - Method: `bad_recovered_wfp`
+    - Stream: `dpc_ctd_instrument_recovered`
+  - Method: `recovered_inst`
+    - Stream: `dpc_ctd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_ctd_instrument_recovered`
+- **Sensor**: `02-VEL3DA103`
+  - Method: `recovered_inst`
+    - Stream: `dpc_acm_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_acm_instrument_recovered`
+- **Sensor**: `03-FLCDRA102`
+  - Method: `recovered_inst`
+    - Stream: `dpc_flcdrtd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_flcdrtd_instrument_recovered`
+- **Sensor**: `04-FLNTUA102`
+  - Method: `recovered_inst`
+    - Stream: `dpc_flnturtd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_flnturtd_instrument_recovered`
+- **Sensor**: `06-DOSTAD104`
+  - Method: `bad_recovered_inst`
+    - Stream: `dpc_optode_instrument_recovered`
+  - Method: `bad_recovered_wfp`
+    - Stream: `dpc_optode_instrument_recovered`
+  - Method: `recovered_inst`
+    - Stream: `dpc_optode_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_optode_instrument_recovered`
+
+## Subsite: `RS01SBPS`
+### Node: `LV01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `02-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03-EP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+    - Stream: `shore_station_otn_sea_side_port_data`
+    - Stream: `shore_station_otn_shore_side_port_data`
+    - Stream: `shore_station_power_feed_equipment_eng_data`
+    - Stream: `shore_station_ups_line_eng_data`
+    - Stream: `shore_station_ups_status`
+### Node: `SC01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `00-WINCH`
+  - Method: `bad_streamed`
+    - Stream: `shallow_profiler_winch_eng_data`
+  - Method: `streamed`
+    - Stream: `shallow_profiler_winch_eng_data`
+- **Sensor**: `04-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `BRAKE-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `VFD-EP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+### Node: `SF01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `02A-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `02D-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03A-IP7`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03B-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03C-IP9`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03-IP10`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04A-IP12`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04B-IP13`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04F-IP15`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `2A-CTDPFA102`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_sbe43_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_sbe43_calibration_coefficients`
+    - Stream: `ctdpf_sbe43_configuration`
+    - Stream: `ctdpf_sbe43_hardware`
+    - Stream: `ctdpf_sbe43_sample`
+    - Stream: `ctdpf_sbe43_status`
+- **Sensor**: `2A-DOFSTA102`
+  - Method: `streamed`
+    - Stream: `do_fast_sample`
+- **Sensor**: `2D-PHSENA101`
+  - Method: `bad_streamed`
+    - Stream: `phsen_regular_status`
+  - Method: `streamed`
+    - Stream: `phsen_battery_voltage`
+    - Stream: `phsen_configuration`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+    - Stream: `phsen_thermistor_voltage`
+- **Sensor**: `3A-FLORTD101`
+  - Method: `bad_streamed`
+    - Stream: `flort_d_data_record`
+  - Method: `streamed`
+    - Stream: `flort_d_data_record`
+    - Stream: `flort_d_status`
+- **Sensor**: `3B-OPTAAD101`
+  - Method: `streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+- **Sensor**: `3C-PARADA101`
+  - Method: `bad_streamed`
+    - Stream: `parad_sa_sample`
+  - Method: `streamed`
+    - Stream: `parad_sa_config`
+    - Stream: `parad_sa_sample`
+- **Sensor**: `3D-SPKIRA101`
+  - Method: `bad_streamed`
+    - Stream: `spkir_data_record`
+  - Method: `streamed`
+    - Stream: `spkir_a_configuration_record`
+    - Stream: `spkir_data_record`
+- **Sensor**: `4A-NUTNRA101`
+  - Method: `streamed`
+    - Stream: `nutnr_a_dark_sample`
+    - Stream: `nutnr_a_sample`
+    - Stream: `nutnr_a_status`
+- **Sensor**: `4B-VELPTD102`
+  - Method: `bad_streamed`
+    - Stream: `velpt_velocity_data`
+  - Method: `streamed`
+    - Stream: `velpt_clock_data`
+    - Stream: `velpt_user_configuration`
+    - Stream: `velpt_velocity_data`
+- **Sensor**: `4F-PCO2WA101`
+  - Method: `streamed`
+    - Stream: `pco2w_a_battery_voltage`
+    - Stream: `pco2w_a_configuration`
+    - Stream: `pco2w_a_regular_status`
+    - Stream: `pco2w_a_sami_data_record`
+    - Stream: `pco2w_a_sami_data_record_cal`
+    - Stream: `pco2w_a_thermistor_voltage`
+### Node: `PC01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `02-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04A-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04B-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04C-IP3`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+    - Stream: `primary_node_out_of_band_port_data`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+    - Stream: `shore_station_force_10_network_port_data`
+    - Stream: `shore_station_otn_sea_side_port_data`
+    - Stream: `shore_station_otn_shore_side_port_data`
+    - Stream: `shore_station_power_feed_equipment_eng_data`
+- **Sensor**: `05-ADCPTD102`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_velocity_beam`
+  - Method: `streamed`
+    - Stream: `adcp_ancillary_system_data`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_transmit_path`
+    - Stream: `adcp_velocity_beam`
+- **Sensor**: `05-IP9`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP10`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP11`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-VADCPA101`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_config_5`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_engineering_5`
+    - Stream: `vadcp_velocity_beam`
+    - Stream: `vadcp_velocity_beam_5`
+  - Method: `streamed`
+    - Stream: `adcp_ancillary_system_data`
+    - Stream: `adcp_ancillary_system_data_5`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_compass_calibration_5`
+    - Stream: `adcp_config`
+    - Stream: `adcp_config_5`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_engineering_5`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_system_configuration_5`
+    - Stream: `adcp_transmit_path`
+    - Stream: `adcp_transmit_path_5`
+    - Stream: `vadcp_4beam_system_configuration`
+    - Stream: `vadcp_5thbeam_compass_calibration`
+    - Stream: `vadcp_5thbeam_system_configuration`
+    - Stream: `vadcp_ancillary_system_data`
+    - Stream: `vadcp_transmit_path`
+    - Stream: `vadcp_velocity_beam`
+    - Stream: `vadcp_velocity_beam_5`
+- **Sensor**: `06-VADCPA101-5TH`
+  - Method: `streamed`
+    - Stream: `adcp_config_5`
+    - Stream: `adcp_engineering_5`
+    - Stream: `vadcp_velocity_beam_5`
+- **Sensor**: `06-VADCPA101MAIN`
+  - Method: `streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `vadcp_velocity_beam`
+- **Sensor**: `06-VADCPB101`
+  - Method: `streamed`
+    - Stream: `vadcp_b_config`
+    - Stream: `vadcp_b_velocity_beam`
+    - Stream: `vadcp_b_velocity_beam5`
+- **Sensor**: `07-CAMDSC102`
+  - Method: `streamed`
+    - Stream: `camds_image_metadata`
+- **Sensor**: `07-IP12`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `08-HYDBBA103`
+  - Method: `bad_streamed`
+    - Stream: `antelope_metadata`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `08-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `4A-CTDPFA103`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_optode_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+    - Stream: `ctdpf_optode_settings`
+    - Stream: `ctdpf_optode_status`
+    - Stream: `ctdpf_sbe43_sample`
+- **Sensor**: `4A-DOSTAD103`
+  - Method: `bad_streamed`
+    - Stream: `do_stable_sample`
+  - Method: `streamed`
+    - Stream: `do_stable_sample`
+- **Sensor**: `4B-PHSENA102`
+  - Method: `bad_streamed`
+    - Stream: `phsen_configuration`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+  - Method: `streamed`
+    - Stream: `phsen_battery_voltage`
+    - Stream: `phsen_configuration`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+    - Stream: `phsen_thermistor_voltage`
+- **Sensor**: `4C-FLORDD103`
+  - Method: `bad_streamed`
+    - Stream: `flort_d_data_record`
+    - Stream: `flort_d_status`
+  - Method: `streamed`
+    - Stream: `flort_d_data_record`
+    - Stream: `flort_d_status`
+
+## Subsite: `RS01SHDR`
+### Node: `PD01B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+### Node: `PN01B`
+- **Sensor**: `PN1B-LVPS`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+- **Sensor**: `PN1B-PRI`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1B-SP1`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1B-SP2`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1B-SP3`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+
+## Subsite: `RS01SLBS`
+### Node: `PD01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+### Node: `PN01A`
+- **Sensor**: `PN1A-LVPS`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+- **Sensor**: `PN1A-PRI`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1A-SP1`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1A-SP2`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN1A-SP3`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+### Node: `MJ01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-HYDLFA101`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSBBA102`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-PRESTA101`
+  - Method: `bad_streamed`
+    - Stream: `prest_real_time`
+  - Method: `streamed`
+    - Stream: `prest_configuration_data`
+    - Stream: `prest_device_status`
+    - Stream: `prest_event_counter`
+    - Stream: `prest_hardware_data`
+    - Stream: `prest_real_time`
+    - Stream: `prest_reference_oscillator`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-VEL3DB101`
+  - Method: `bad_streamed`
+    - Stream: `vel3d_b_sample`
+  - Method: `streamed`
+    - Stream: `vel3d_b_engineering`
+    - Stream: `vel3d_b_sample`
+### Node: `LJ01A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-HPIESA101`
+  - Method: `streamed`
+    - Stream: `calibration_status`
+    - Stream: `echo_sounding`
+    - Stream: `horizontal_electric_field`
+    - Stream: `hpies_data_header`
+    - Stream: `hpies_status`
+    - Stream: `motor_current`
+    - Stream: `stm_timestamp`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+- **Sensor**: `08-IP4`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-HYDBBA102`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `09-IP5`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `10-ADCPTE101`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_velocity_beam`
+  - Method: `streamed`
+    - Stream: `adcp_ancillary_system_data`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_transmit_path`
+    - Stream: `adcp_velocity_beam`
+- **Sensor**: `10-IP6`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `11-IP7`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `11-OPTAAC103`
+  - Method: `streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+- **Sensor**: `12-CTDPFB101`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+    - Stream: `ctdpf_optode_settings`
+    - Stream: `ctdpf_optode_status`
+- **Sensor**: `12-DOSTAD101`
+  - Method: `streamed`
+    - Stream: `do_stable_sample`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+
+## Subsite: `RS01SUM1`
+### Node: `LV01B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `02-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+### Node: `MJ01B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+### Node: `LJ01B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-HYDLFA104`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSBBA101`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-OBSSPA103`
+  - Method: `bad_streamed`
+    - Stream: `antelope_metadata`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `07-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `07-OBSSPA102`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `08-IP4`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `08-OBSSPA101`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `09-IP5`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-PRESTB102`
+  - Method: `bad_streamed`
+    - Stream: `prest_real_time`
+  - Method: `streamed`
+    - Stream: `prest_configuration_data`
+    - Stream: `prest_device_status`
+    - Stream: `prest_hardware_data`
+    - Stream: `prest_real_time`
+    - Stream: `prest_reference_oscillator`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-VEL3DB104`
+  - Method: `bad_streamed`
+    - Stream: `vel3d_b_sample`
+  - Method: `streamed`
+    - Stream: `vel3d_b_engineering`
+    - Stream: `vel3d_b_sample`
+
+## Subsite: `RS01SUM2`
+### Node: `MJ01B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-ADCPSK101`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_velocity_beam`
+  - Method: `streamed`
+    - Stream: `adcp_ancillary_system_data`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_transmit_path`
+    - Stream: `adcp_velocity_beam`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+
+## Subsite: `RS03ASHS`
+### Node: `PN03B`
+- **Sensor**: `06-CAMHDA301`
+  - Method: `telemetered`
+    - Stream: `camhd_metadata`
+### Node: `MJ03B`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSSPA302`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-OBSSPA301`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `07-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `07-TMPSFA301`
+  - Method: `bad_streamed`
+    - Stream: `tmpsf_sample`
+  - Method: `streamed`
+    - Stream: `tmpsf_engineering`
+    - Stream: `tmpsf_sample`
+- **Sensor**: `09-BOTPTA304`
+  - Method: `bad_streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_sample`
+  - Method: `streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_leveling`
+    - Stream: `botpt_lily_sample`
+    - Stream: `botpt_nano_sample`
+    - Stream: `botpt_nano_sample_15sec`
+    - Stream: `botpt_nano_sample_24hour`
+    - Stream: `instrument_predicted_tide`
+- **Sensor**: `10-CTDPFB304`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_optode_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+
+## Subsite: `RS03AXBS`
+### Node: `PN03A`
+- **Sensor**: `PN3A-LVPS`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+- **Sensor**: `PN3A-PRI`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3A-SP1`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3A-SP2`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3A-SP3`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+### Node: `MJ03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-HYDLFA301`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSBBA303`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-PRESTA301`
+  - Method: `bad_streamed`
+    - Stream: `prest_real_time`
+  - Method: `streamed`
+    - Stream: `prest_configuration_data`
+    - Stream: `prest_device_status`
+    - Stream: `prest_event_counter`
+    - Stream: `prest_hardware_data`
+    - Stream: `prest_real_time`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-VEL3DB301`
+  - Method: `bad_streamed`
+    - Stream: `vel3d_b_sample`
+  - Method: `streamed`
+    - Stream: `vel3d_b_sample`
+### Node: `LJ03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-HPIESA301`
+  - Method: `bad_streamed`
+    - Stream: `stm_timestamp`
+  - Method: `streamed`
+    - Stream: `calibration_status`
+    - Stream: `echo_sounding`
+    - Stream: `horizontal_electric_field`
+    - Stream: `hpies_data_header`
+    - Stream: `hpies_status`
+    - Stream: `motor_current`
+    - Stream: `stm_timestamp`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `08-IP4`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-HYDBBA302`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `09-IP5`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+- **Sensor**: `10-ADCPTE303`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_velocity_beam`
+  - Method: `streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_velocity_beam`
+- **Sensor**: `10-IP6`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `11-IP7`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `11-OPTAAC303`
+  - Method: `bad_streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+  - Method: `streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+- **Sensor**: `12-CTDPFB301`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+    - Stream: `ctdpf_optode_settings`
+    - Stream: `ctdpf_optode_status`
+- **Sensor**: `12-DOSTAD301`
+  - Method: `bad_streamed`
+    - Stream: `do_stable_sample`
+  - Method: `streamed`
+    - Stream: `do_stable_sample`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+
+## Subsite: `RS03AXPD`
+### Node: `PD03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+### Node: `DP03A`
+- **Sensor**: `00-ENG000000`
+  - Method: `bad_recovered_wfp`
+    - Stream: `dpc_mmp_instrument_recovered`
+  - Method: `recovered_inst`
+    - Stream: `dpc_mmp_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_mmp_instrument_recovered`
+- **Sensor**: `01-CTDPFL304`
+  - Method: `recovered_inst`
+    - Stream: `dpc_ctd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_ctd_instrument_recovered`
+- **Sensor**: `02-VEL3DA303`
+  - Method: `recovered_inst`
+    - Stream: `dpc_acm_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_acm_instrument_recovered`
+- **Sensor**: `03-FLCDRA302`
+  - Method: `recovered_inst`
+    - Stream: `dpc_flcdrtd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_flcdrtd_instrument_recovered`
+- **Sensor**: `03-FLNTUA302`
+  - Method: `recovered_inst`
+    - Stream: `dpc_flnturtd_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_flnturtd_instrument_recovered`
+- **Sensor**: `06-DOSTAD304`
+  - Method: `bad_recovered_wfp`
+    - Stream: `dpc_optode_instrument_recovered`
+  - Method: `recovered_inst`
+    - Stream: `dpc_optode_instrument_recovered`
+  - Method: `recovered_wfp`
+    - Stream: `dpc_optode_instrument_recovered`
+
+## Subsite: `RS03AXPS`
+### Node: `LV03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `02-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03-EP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+### Node: `SC03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `00-WINCH`
+  - Method: `bad_streamed`
+    - Stream: `shallow_profiler_winch_eng_data`
+  - Method: `streamed`
+    - Stream: `shallow_profiler_winch_eng_data`
+- **Sensor**: `04-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `BRAKE-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `VFD-EP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+### Node: `PC03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+    - Stream: `primary_node_out_of_band_port_data`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `shore_station_otn_sea_side_port_data`
+    - Stream: `shore_station_otn_shore_side_port_data`
+- **Sensor**: `02-EP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04A-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04B-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04C-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-ADCPTD302`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_velocity_beam`
+  - Method: `streamed`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_config`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_velocity_beam`
+- **Sensor**: `05-IP9`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP10`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP11`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-VADCPA301`
+  - Method: `bad_streamed`
+    - Stream: `adcp_config`
+    - Stream: `adcp_config_5`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_engineering_5`
+    - Stream: `vadcp_velocity_beam`
+    - Stream: `vadcp_velocity_beam_5`
+  - Method: `streamed`
+    - Stream: `adcp_ancillary_system_data`
+    - Stream: `adcp_ancillary_system_data_5`
+    - Stream: `adcp_compass_calibration`
+    - Stream: `adcp_compass_calibration_5`
+    - Stream: `adcp_config`
+    - Stream: `adcp_config_5`
+    - Stream: `adcp_engineering`
+    - Stream: `adcp_engineering_5`
+    - Stream: `adcp_system_configuration`
+    - Stream: `adcp_system_configuration_5`
+    - Stream: `adcp_transmit_path`
+    - Stream: `adcp_transmit_path_5`
+    - Stream: `vadcp_velocity_beam`
+    - Stream: `vadcp_velocity_beam_5`
+- **Sensor**: `06-VADCPB301`
+  - Method: `streamed`
+    - Stream: `vadcp_b_config`
+    - Stream: `vadcp_b_velocity_beam`
+    - Stream: `vadcp_b_velocity_beam5`
+- **Sensor**: `07-IP12`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `08-HYDBBA303`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `08-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `4A-CTDPFA303`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_optode_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+    - Stream: `ctdpf_optode_settings`
+    - Stream: `ctdpf_optode_status`
+- **Sensor**: `4A-DOSTAD303`
+  - Method: `bad_streamed`
+    - Stream: `do_stable_sample`
+  - Method: `streamed`
+    - Stream: `do_stable_sample`
+- **Sensor**: `4B-PHSENA302`
+  - Method: `bad_streamed`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+  - Method: `streamed`
+    - Stream: `phsen_configuration`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+- **Sensor**: `4C-FLORDD303`
+  - Method: `bad_streamed`
+    - Stream: `flort_d_data_record`
+  - Method: `streamed`
+    - Stream: `flort_d_data_record`
+    - Stream: `flort_d_status`
+### Node: `SF03A`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `02A-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `02D-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03A-IP7`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03B-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03C-IP9`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `03-IP10`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04A-IP12`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04B-IP13`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `04F-IP15`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `2A-CTDPFA302`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_sbe43_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_sbe43_calibration_coefficients`
+    - Stream: `ctdpf_sbe43_configuration`
+    - Stream: `ctdpf_sbe43_hardware`
+    - Stream: `ctdpf_sbe43_sample`
+    - Stream: `ctdpf_sbe43_status`
+- **Sensor**: `2A-DOFSTA302`
+  - Method: `bad_streamed`
+    - Stream: `do_fast_sample`
+  - Method: `streamed`
+    - Stream: `do_fast_sample`
+- **Sensor**: `2D-PHSENA301`
+  - Method: `bad_streamed`
+    - Stream: `phsen_configuration`
+  - Method: `streamed`
+    - Stream: `phsen_battery_voltage`
+    - Stream: `phsen_configuration`
+    - Stream: `phsen_data_record`
+    - Stream: `phsen_regular_status`
+    - Stream: `phsen_thermistor_voltage`
+- **Sensor**: `3A-FLORTD301`
+  - Method: `bad_streamed`
+    - Stream: `flort_d_data_record`
+  - Method: `streamed`
+    - Stream: `flort_d_data_record`
+    - Stream: `flort_d_status`
+- **Sensor**: `3B-OPTAAD301`
+  - Method: `bad_streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+  - Method: `streamed`
+    - Stream: `optaa_sample`
+    - Stream: `optaa_status`
+- **Sensor**: `3C-PARADA301`
+  - Method: `bad_streamed`
+    - Stream: `parad_sa_sample`
+  - Method: `streamed`
+    - Stream: `parad_sa_config`
+    - Stream: `parad_sa_sample`
+- **Sensor**: `3D-SPKIRA301`
+  - Method: `bad_streamed`
+    - Stream: `spkir_data_record`
+  - Method: `streamed`
+    - Stream: `spkir_a_configuration_record`
+    - Stream: `spkir_data_record`
+- **Sensor**: `4A-NUTNRA301`
+  - Method: `bad_streamed`
+    - Stream: `nutnr_a_dark_sample`
+    - Stream: `nutnr_a_sample`
+  - Method: `streamed`
+    - Stream: `nutnr_a_dark_sample`
+    - Stream: `nutnr_a_sample`
+    - Stream: `nutnr_a_status`
+    - Stream: `nutnr_a_test`
+- **Sensor**: `4B-VELPTD302`
+  - Method: `bad_streamed`
+    - Stream: `velpt_velocity_data`
+  - Method: `streamed`
+    - Stream: `velpt_clock_data`
+    - Stream: `velpt_user_configuration`
+    - Stream: `velpt_velocity_data`
+- **Sensor**: `4F-PCO2WA301`
+  - Method: `bad_streamed`
+    - Stream: `pco2w_a_regular_status`
+    - Stream: `pco2w_a_sami_data_record_cal`
+  - Method: `streamed`
+    - Stream: `pco2w_a_battery_voltage`
+    - Stream: `pco2w_a_configuration`
+    - Stream: `pco2w_a_regular_status`
+    - Stream: `pco2w_a_sami_data_record`
+    - Stream: `pco2w_a_sami_data_record_cal`
+    - Stream: `pco2w_a_thermistor_voltage`
+
+## Subsite: `RS03AXSM`
+### Node: `PN03B`
+- **Sensor**: `PN3B-LVPS`
+  - Method: `streamed`
+    - Stream: `primary_node_eng_data`
+- **Sensor**: `PN3B-PRI`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP1`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP2`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP3`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP4`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP5`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+- **Sensor**: `PN3B-SP6`
+  - Method: `streamed`
+    - Stream: `primary_node_out_of_band_port_data`
+
+## Subsite: `RS03CCAL`
+### Node: `MJ03F`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-BOTPTA301`
+  - Method: `streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_leveling`
+    - Stream: `botpt_lily_sample`
+    - Stream: `botpt_nano_sample`
+    - Stream: `botpt_nano_sample_15sec`
+    - Stream: `botpt_nano_sample_24hour`
+    - Stream: `botpt_status`
+    - Stream: `instrument_predicted_tide`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-HYDLFA305`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-OBSBBA301`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `12-CTDPFB305`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+
+## Subsite: `RS03ECAL`
+### Node: `MJ03E`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSSPA303`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-BOTPTA302`
+  - Method: `bad_streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_sample`
+  - Method: `streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_leveling`
+    - Stream: `botpt_lily_sample`
+    - Stream: `botpt_nano_sample`
+    - Stream: `botpt_nano_sample_15sec`
+    - Stream: `botpt_nano_sample_24hour`
+    - Stream: `botpt_status`
+    - Stream: `instrument_predicted_tide`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `deep_profiler_dock_eng_data`
+    - Stream: `secondary_node_eng_data`
+    - Stream: `secondary_node_port_eng_data`
+    - Stream: `shallow_profiler_winch_eng_data`
+- **Sensor**: `08-IP4`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `08-OBSSPA304`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `09-HYDLFA304`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `09-IP5`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-OBSBBA302`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `12-CTDPFB306`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+
+## Subsite: `RS03INT1`
+### Node: `MJ03C`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `07-D1000A301`
+  - Method: `streamed`
+    - Stream: `d1000_sample`
+- **Sensor**: `07-IP3`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-IP5`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `09-THSPHA301`
+  - Method: `streamed`
+    - Stream: `thsph_sample`
+- **Sensor**: `09-TRHPHA302`
+  - Method: `bad_streamed`
+    - Stream: `trhph_sample`
+  - Method: `streamed`
+    - Stream: `trhph_sample`
+- **Sensor**: `10-IP6`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `10-TRHPHA301`
+  - Method: `streamed`
+    - Stream: `trhph_sample`
+
+## Subsite: `RS03INT2`
+### Node: `MJ03D`
+- **Sensor**: `00-ENG`
+  - Method: `streamed`
+    - Stream: `secondary_node_eng_data`
+- **Sensor**: `05-IP1`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `05-OBSSPA305`
+  - Method: `streamed`
+    - Stream: `antelope_metadata`
+- **Sensor**: `06-BOTPTA303`
+  - Method: `bad_streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_sample`
+  - Method: `streamed`
+    - Stream: `botpt_heat_sample`
+    - Stream: `botpt_iris_sample`
+    - Stream: `botpt_lily_leveling`
+    - Stream: `botpt_lily_sample`
+    - Stream: `botpt_nano_sample`
+    - Stream: `botpt_nano_sample_15sec`
+    - Stream: `botpt_nano_sample_24hour`
+    - Stream: `instrument_predicted_tide`
+- **Sensor**: `06-IP2`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `11-CTDPFB307`
+  - Method: `bad_streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+  - Method: `streamed`
+    - Stream: `ctdpf_optode_calibration_coefficients`
+    - Stream: `ctdpf_optode_configuration`
+    - Stream: `ctdpf_optode_hardware`
+    - Stream: `ctdpf_optode_sample`
+- **Sensor**: `12-IP8`
+  - Method: `streamed`
+    - Stream: `secondary_node_port_eng_data`
+- **Sensor**: `12-VEL3DB304`
+  - Method: `bad_streamed`
+    - Stream: `vel3d_b_sample`
+  - Method: `streamed`
+    - Stream: `vel3d_b_engineering`
+    - Stream: `vel3d_b_sample`

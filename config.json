@@ -1,0 +1,7 @@
+{
+  "display_name": "Ada",
+  "llm_provider": "fireworks",
+  "model_repo_id": "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
+  "model_filename": "gemma4-coding-Q2_K.gguf",
+  "fireworks_model": "accounts/fireworks/models/qwen3p7-plus"
+}

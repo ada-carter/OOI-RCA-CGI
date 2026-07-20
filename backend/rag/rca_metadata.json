@@ -1,0 +1,1856 @@
+{
+  "RS01SBPD": {
+    "PD01A": {
+      "00-ENG": {
+        "streamed": [
+          "deep_profiler_dock_eng_data",
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data"
+        ]
+      }
+    },
+    "DP01A": {
+      "00-ENG000000": {
+        "bad_recovered_wfp": [
+          "dpc_mmp_instrument_recovered"
+        ],
+        "recovered_inst": [
+          "dpc_mmp_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_mmp_instrument_recovered"
+        ]
+      },
+      "01-CTDPFL104": {
+        "bad_recovered_wfp": [
+          "dpc_ctd_instrument_recovered"
+        ],
+        "recovered_inst": [
+          "dpc_ctd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_ctd_instrument_recovered"
+        ]
+      },
+      "02-VEL3DA103": {
+        "recovered_inst": [
+          "dpc_acm_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_acm_instrument_recovered"
+        ]
+      },
+      "03-FLCDRA102": {
+        "recovered_inst": [
+          "dpc_flcdrtd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_flcdrtd_instrument_recovered"
+        ]
+      },
+      "04-FLNTUA102": {
+        "recovered_inst": [
+          "dpc_flnturtd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_flnturtd_instrument_recovered"
+        ]
+      },
+      "06-DOSTAD104": {
+        "bad_recovered_inst": [
+          "dpc_optode_instrument_recovered"
+        ],
+        "bad_recovered_wfp": [
+          "dpc_optode_instrument_recovered"
+        ],
+        "recovered_inst": [
+          "dpc_optode_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_optode_instrument_recovered"
+        ]
+      }
+    }
+  },
+  "RS01SBPS": {
+    "LV01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "02-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03-EP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data",
+          "shore_station_otn_sea_side_port_data",
+          "shore_station_otn_shore_side_port_data",
+          "shore_station_power_feed_equipment_eng_data",
+          "shore_station_ups_line_eng_data",
+          "shore_station_ups_status"
+        ]
+      }
+    },
+    "SC01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "00-WINCH": {
+        "bad_streamed": [
+          "shallow_profiler_winch_eng_data"
+        ],
+        "streamed": [
+          "shallow_profiler_winch_eng_data"
+        ]
+      },
+      "04-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "BRAKE-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "VFD-EP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    },
+    "SF01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "02A-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "02D-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03A-IP7": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03B-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03C-IP9": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03-IP10": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04A-IP12": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04B-IP13": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04F-IP15": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "2A-CTDPFA102": {
+        "bad_streamed": [
+          "ctdpf_sbe43_sample"
+        ],
+        "streamed": [
+          "ctdpf_sbe43_calibration_coefficients",
+          "ctdpf_sbe43_configuration",
+          "ctdpf_sbe43_hardware",
+          "ctdpf_sbe43_sample",
+          "ctdpf_sbe43_status"
+        ]
+      },
+      "2A-DOFSTA102": {
+        "streamed": [
+          "do_fast_sample"
+        ]
+      },
+      "2D-PHSENA101": {
+        "bad_streamed": [
+          "phsen_regular_status"
+        ],
+        "streamed": [
+          "phsen_battery_voltage",
+          "phsen_configuration",
+          "phsen_data_record",
+          "phsen_regular_status",
+          "phsen_thermistor_voltage"
+        ]
+      },
+      "3A-FLORTD101": {
+        "bad_streamed": [
+          "flort_d_data_record"
+        ],
+        "streamed": [
+          "flort_d_data_record",
+          "flort_d_status"
+        ]
+      },
+      "3B-OPTAAD101": {
+        "streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ]
+      },
+      "3C-PARADA101": {
+        "bad_streamed": [
+          "parad_sa_sample"
+        ],
+        "streamed": [
+          "parad_sa_config",
+          "parad_sa_sample"
+        ]
+      },
+      "3D-SPKIRA101": {
+        "bad_streamed": [
+          "spkir_data_record"
+        ],
+        "streamed": [
+          "spkir_a_configuration_record",
+          "spkir_data_record"
+        ]
+      },
+      "4A-NUTNRA101": {
+        "streamed": [
+          "nutnr_a_dark_sample",
+          "nutnr_a_sample",
+          "nutnr_a_status"
+        ]
+      },
+      "4B-VELPTD102": {
+        "bad_streamed": [
+          "velpt_velocity_data"
+        ],
+        "streamed": [
+          "velpt_clock_data",
+          "velpt_user_configuration",
+          "velpt_velocity_data"
+        ]
+      },
+      "4F-PCO2WA101": {
+        "streamed": [
+          "pco2w_a_battery_voltage",
+          "pco2w_a_configuration",
+          "pco2w_a_regular_status",
+          "pco2w_a_sami_data_record",
+          "pco2w_a_sami_data_record_cal",
+          "pco2w_a_thermistor_voltage"
+        ]
+      }
+    },
+    "PC01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "02-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04A-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04B-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04C-IP3": {
+        "streamed": [
+          "primary_node_eng_data",
+          "primary_node_out_of_band_port_data",
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data",
+          "shore_station_force_10_network_port_data",
+          "shore_station_otn_sea_side_port_data",
+          "shore_station_otn_shore_side_port_data",
+          "shore_station_power_feed_equipment_eng_data"
+        ]
+      },
+      "05-ADCPTD102": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_velocity_beam"
+        ],
+        "streamed": [
+          "adcp_ancillary_system_data",
+          "adcp_compass_calibration",
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_transmit_path",
+          "adcp_velocity_beam"
+        ]
+      },
+      "05-IP9": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP10": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP11": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-VADCPA101": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_config_5",
+          "adcp_engineering",
+          "adcp_engineering_5",
+          "vadcp_velocity_beam",
+          "vadcp_velocity_beam_5"
+        ],
+        "streamed": [
+          "adcp_ancillary_system_data",
+          "adcp_ancillary_system_data_5",
+          "adcp_compass_calibration",
+          "adcp_compass_calibration_5",
+          "adcp_config",
+          "adcp_config_5",
+          "adcp_engineering",
+          "adcp_engineering_5",
+          "adcp_system_configuration",
+          "adcp_system_configuration_5",
+          "adcp_transmit_path",
+          "adcp_transmit_path_5",
+          "vadcp_4beam_system_configuration",
+          "vadcp_5thbeam_compass_calibration",
+          "vadcp_5thbeam_system_configuration",
+          "vadcp_ancillary_system_data",
+          "vadcp_transmit_path",
+          "vadcp_velocity_beam",
+          "vadcp_velocity_beam_5"
+        ]
+      },
+      "06-VADCPA101-5TH": {
+        "streamed": [
+          "adcp_config_5",
+          "adcp_engineering_5",
+          "vadcp_velocity_beam_5"
+        ]
+      },
+      "06-VADCPA101MAIN": {
+        "streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "vadcp_velocity_beam"
+        ]
+      },
+      "06-VADCPB101": {
+        "streamed": [
+          "vadcp_b_config",
+          "vadcp_b_velocity_beam",
+          "vadcp_b_velocity_beam5"
+        ]
+      },
+      "07-CAMDSC102": {
+        "streamed": [
+          "camds_image_metadata"
+        ]
+      },
+      "07-IP12": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "08-HYDBBA103": {
+        "bad_streamed": [
+          "antelope_metadata"
+        ],
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "08-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "4A-CTDPFA103": {
+        "bad_streamed": [
+          "ctdpf_optode_sample"
+        ],
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample",
+          "ctdpf_optode_settings",
+          "ctdpf_optode_status",
+          "ctdpf_sbe43_sample"
+        ]
+      },
+      "4A-DOSTAD103": {
+        "bad_streamed": [
+          "do_stable_sample"
+        ],
+        "streamed": [
+          "do_stable_sample"
+        ]
+      },
+      "4B-PHSENA102": {
+        "bad_streamed": [
+          "phsen_configuration",
+          "phsen_data_record",
+          "phsen_regular_status"
+        ],
+        "streamed": [
+          "phsen_battery_voltage",
+          "phsen_configuration",
+          "phsen_data_record",
+          "phsen_regular_status",
+          "phsen_thermistor_voltage"
+        ]
+      },
+      "4C-FLORDD103": {
+        "bad_streamed": [
+          "flort_d_data_record",
+          "flort_d_status"
+        ],
+        "streamed": [
+          "flort_d_data_record",
+          "flort_d_status"
+        ]
+      }
+    }
+  },
+  "RS01SHDR": {
+    "PD01B": {
+      "00-ENG": {
+        "streamed": [
+          "deep_profiler_dock_eng_data"
+        ]
+      }
+    },
+    "PN01B": {
+      "PN1B-LVPS": {
+        "streamed": [
+          "primary_node_eng_data"
+        ]
+      },
+      "PN1B-PRI": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1B-SP1": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1B-SP2": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1B-SP3": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      }
+    }
+  },
+  "RS01SLBS": {
+    "PD01A": {
+      "00-ENG": {
+        "streamed": [
+          "deep_profiler_dock_eng_data"
+        ]
+      }
+    },
+    "PN01A": {
+      "PN1A-LVPS": {
+        "streamed": [
+          "primary_node_eng_data"
+        ]
+      },
+      "PN1A-PRI": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1A-SP1": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1A-SP2": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN1A-SP3": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      }
+    },
+    "MJ01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-HYDLFA101": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSBBA102": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-PRESTA101": {
+        "bad_streamed": [
+          "prest_real_time"
+        ],
+        "streamed": [
+          "prest_configuration_data",
+          "prest_device_status",
+          "prest_event_counter",
+          "prest_hardware_data",
+          "prest_real_time",
+          "prest_reference_oscillator"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-VEL3DB101": {
+        "bad_streamed": [
+          "vel3d_b_sample"
+        ],
+        "streamed": [
+          "vel3d_b_engineering",
+          "vel3d_b_sample"
+        ]
+      }
+    },
+    "LJ01A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-HPIESA101": {
+        "streamed": [
+          "calibration_status",
+          "echo_sounding",
+          "horizontal_electric_field",
+          "hpies_data_header",
+          "hpies_status",
+          "motor_current",
+          "stm_timestamp"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data"
+        ]
+      },
+      "08-IP4": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-HYDBBA102": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "09-IP5": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "10-ADCPTE101": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_velocity_beam"
+        ],
+        "streamed": [
+          "adcp_ancillary_system_data",
+          "adcp_compass_calibration",
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_transmit_path",
+          "adcp_velocity_beam"
+        ]
+      },
+      "10-IP6": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "11-IP7": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "11-OPTAAC103": {
+        "streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ]
+      },
+      "12-CTDPFB101": {
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample",
+          "ctdpf_optode_settings",
+          "ctdpf_optode_status"
+        ]
+      },
+      "12-DOSTAD101": {
+        "streamed": [
+          "do_stable_sample"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    }
+  },
+  "RS01SUM1": {
+    "LV01B": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "02-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    },
+    "MJ01B": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    },
+    "LJ01B": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-HYDLFA104": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSBBA101": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-OBSSPA103": {
+        "bad_streamed": [
+          "antelope_metadata"
+        ],
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "07-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "07-OBSSPA102": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "08-IP4": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "08-OBSSPA101": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "09-IP5": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-PRESTB102": {
+        "bad_streamed": [
+          "prest_real_time"
+        ],
+        "streamed": [
+          "prest_configuration_data",
+          "prest_device_status",
+          "prest_hardware_data",
+          "prest_real_time",
+          "prest_reference_oscillator"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "deep_profiler_dock_eng_data",
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-VEL3DB104": {
+        "bad_streamed": [
+          "vel3d_b_sample"
+        ],
+        "streamed": [
+          "vel3d_b_engineering",
+          "vel3d_b_sample"
+        ]
+      }
+    }
+  },
+  "RS01SUM2": {
+    "MJ01B": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-ADCPSK101": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_velocity_beam"
+        ],
+        "streamed": [
+          "adcp_ancillary_system_data",
+          "adcp_compass_calibration",
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_transmit_path",
+          "adcp_velocity_beam"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    }
+  },
+  "RS03ASHS": {
+    "PN03B": {
+      "06-CAMHDA301": {
+        "telemetered": [
+          "camhd_metadata"
+        ]
+      }
+    },
+    "MJ03B": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSSPA302": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-OBSSPA301": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "07-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "07-TMPSFA301": {
+        "bad_streamed": [
+          "tmpsf_sample"
+        ],
+        "streamed": [
+          "tmpsf_engineering",
+          "tmpsf_sample"
+        ]
+      },
+      "09-BOTPTA304": {
+        "bad_streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_sample"
+        ],
+        "streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_leveling",
+          "botpt_lily_sample",
+          "botpt_nano_sample",
+          "botpt_nano_sample_15sec",
+          "botpt_nano_sample_24hour",
+          "instrument_predicted_tide"
+        ]
+      },
+      "10-CTDPFB304": {
+        "bad_streamed": [
+          "ctdpf_optode_sample"
+        ],
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ]
+      }
+    }
+  },
+  "RS03AXBS": {
+    "PN03A": {
+      "PN3A-LVPS": {
+        "streamed": [
+          "primary_node_eng_data"
+        ]
+      },
+      "PN3A-PRI": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3A-SP1": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3A-SP2": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3A-SP3": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      }
+    },
+    "MJ03A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-HYDLFA301": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSBBA303": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-PRESTA301": {
+        "bad_streamed": [
+          "prest_real_time"
+        ],
+        "streamed": [
+          "prest_configuration_data",
+          "prest_device_status",
+          "prest_event_counter",
+          "prest_hardware_data",
+          "prest_real_time"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-VEL3DB301": {
+        "bad_streamed": [
+          "vel3d_b_sample"
+        ],
+        "streamed": [
+          "vel3d_b_sample"
+        ]
+      }
+    },
+    "LJ03A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-HPIESA301": {
+        "bad_streamed": [
+          "stm_timestamp"
+        ],
+        "streamed": [
+          "calibration_status",
+          "echo_sounding",
+          "horizontal_electric_field",
+          "hpies_data_header",
+          "hpies_status",
+          "motor_current",
+          "stm_timestamp"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "08-IP4": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-HYDBBA302": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "09-IP5": {
+        "streamed": [
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data"
+        ]
+      },
+      "10-ADCPTE303": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_velocity_beam"
+        ],
+        "streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_velocity_beam"
+        ]
+      },
+      "10-IP6": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "11-IP7": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "11-OPTAAC303": {
+        "bad_streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ],
+        "streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ]
+      },
+      "12-CTDPFB301": {
+        "bad_streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ],
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample",
+          "ctdpf_optode_settings",
+          "ctdpf_optode_status"
+        ]
+      },
+      "12-DOSTAD301": {
+        "bad_streamed": [
+          "do_stable_sample"
+        ],
+        "streamed": [
+          "do_stable_sample"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    }
+  },
+  "RS03AXPD": {
+    "PD03A": {
+      "00-ENG": {
+        "streamed": [
+          "deep_profiler_dock_eng_data"
+        ]
+      }
+    },
+    "DP03A": {
+      "00-ENG000000": {
+        "bad_recovered_wfp": [
+          "dpc_mmp_instrument_recovered"
+        ],
+        "recovered_inst": [
+          "dpc_mmp_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_mmp_instrument_recovered"
+        ]
+      },
+      "01-CTDPFL304": {
+        "recovered_inst": [
+          "dpc_ctd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_ctd_instrument_recovered"
+        ]
+      },
+      "02-VEL3DA303": {
+        "recovered_inst": [
+          "dpc_acm_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_acm_instrument_recovered"
+        ]
+      },
+      "03-FLCDRA302": {
+        "recovered_inst": [
+          "dpc_flcdrtd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_flcdrtd_instrument_recovered"
+        ]
+      },
+      "03-FLNTUA302": {
+        "recovered_inst": [
+          "dpc_flnturtd_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_flnturtd_instrument_recovered"
+        ]
+      },
+      "06-DOSTAD304": {
+        "bad_recovered_wfp": [
+          "dpc_optode_instrument_recovered"
+        ],
+        "recovered_inst": [
+          "dpc_optode_instrument_recovered"
+        ],
+        "recovered_wfp": [
+          "dpc_optode_instrument_recovered"
+        ]
+      }
+    }
+  },
+  "RS03AXPS": {
+    "LV03A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "02-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03-EP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    },
+    "SC03A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "00-WINCH": {
+        "bad_streamed": [
+          "shallow_profiler_winch_eng_data"
+        ],
+        "streamed": [
+          "shallow_profiler_winch_eng_data"
+        ]
+      },
+      "04-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "BRAKE-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "VFD-EP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    },
+    "PC03A": {
+      "00-ENG": {
+        "streamed": [
+          "primary_node_eng_data",
+          "primary_node_out_of_band_port_data",
+          "secondary_node_eng_data",
+          "shore_station_otn_sea_side_port_data",
+          "shore_station_otn_shore_side_port_data"
+        ]
+      },
+      "02-EP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04A-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04B-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04C-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-ADCPTD302": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_velocity_beam"
+        ],
+        "streamed": [
+          "adcp_compass_calibration",
+          "adcp_config",
+          "adcp_engineering",
+          "adcp_system_configuration",
+          "adcp_velocity_beam"
+        ]
+      },
+      "05-IP9": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP10": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP11": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-VADCPA301": {
+        "bad_streamed": [
+          "adcp_config",
+          "adcp_config_5",
+          "adcp_engineering",
+          "adcp_engineering_5",
+          "vadcp_velocity_beam",
+          "vadcp_velocity_beam_5"
+        ],
+        "streamed": [
+          "adcp_ancillary_system_data",
+          "adcp_ancillary_system_data_5",
+          "adcp_compass_calibration",
+          "adcp_compass_calibration_5",
+          "adcp_config",
+          "adcp_config_5",
+          "adcp_engineering",
+          "adcp_engineering_5",
+          "adcp_system_configuration",
+          "adcp_system_configuration_5",
+          "adcp_transmit_path",
+          "adcp_transmit_path_5",
+          "vadcp_velocity_beam",
+          "vadcp_velocity_beam_5"
+        ]
+      },
+      "06-VADCPB301": {
+        "streamed": [
+          "vadcp_b_config",
+          "vadcp_b_velocity_beam",
+          "vadcp_b_velocity_beam5"
+        ]
+      },
+      "07-IP12": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "08-HYDBBA303": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "08-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "4A-CTDPFA303": {
+        "bad_streamed": [
+          "ctdpf_optode_sample"
+        ],
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample",
+          "ctdpf_optode_settings",
+          "ctdpf_optode_status"
+        ]
+      },
+      "4A-DOSTAD303": {
+        "bad_streamed": [
+          "do_stable_sample"
+        ],
+        "streamed": [
+          "do_stable_sample"
+        ]
+      },
+      "4B-PHSENA302": {
+        "bad_streamed": [
+          "phsen_data_record",
+          "phsen_regular_status"
+        ],
+        "streamed": [
+          "phsen_configuration",
+          "phsen_data_record",
+          "phsen_regular_status"
+        ]
+      },
+      "4C-FLORDD303": {
+        "bad_streamed": [
+          "flort_d_data_record"
+        ],
+        "streamed": [
+          "flort_d_data_record",
+          "flort_d_status"
+        ]
+      }
+    },
+    "SF03A": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "02A-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "02D-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03A-IP7": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03B-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03C-IP9": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "03-IP10": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04A-IP12": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04B-IP13": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "04F-IP15": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "2A-CTDPFA302": {
+        "bad_streamed": [
+          "ctdpf_sbe43_sample"
+        ],
+        "streamed": [
+          "ctdpf_sbe43_calibration_coefficients",
+          "ctdpf_sbe43_configuration",
+          "ctdpf_sbe43_hardware",
+          "ctdpf_sbe43_sample",
+          "ctdpf_sbe43_status"
+        ]
+      },
+      "2A-DOFSTA302": {
+        "bad_streamed": [
+          "do_fast_sample"
+        ],
+        "streamed": [
+          "do_fast_sample"
+        ]
+      },
+      "2D-PHSENA301": {
+        "bad_streamed": [
+          "phsen_configuration"
+        ],
+        "streamed": [
+          "phsen_battery_voltage",
+          "phsen_configuration",
+          "phsen_data_record",
+          "phsen_regular_status",
+          "phsen_thermistor_voltage"
+        ]
+      },
+      "3A-FLORTD301": {
+        "bad_streamed": [
+          "flort_d_data_record"
+        ],
+        "streamed": [
+          "flort_d_data_record",
+          "flort_d_status"
+        ]
+      },
+      "3B-OPTAAD301": {
+        "bad_streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ],
+        "streamed": [
+          "optaa_sample",
+          "optaa_status"
+        ]
+      },
+      "3C-PARADA301": {
+        "bad_streamed": [
+          "parad_sa_sample"
+        ],
+        "streamed": [
+          "parad_sa_config",
+          "parad_sa_sample"
+        ]
+      },
+      "3D-SPKIRA301": {
+        "bad_streamed": [
+          "spkir_data_record"
+        ],
+        "streamed": [
+          "spkir_a_configuration_record",
+          "spkir_data_record"
+        ]
+      },
+      "4A-NUTNRA301": {
+        "bad_streamed": [
+          "nutnr_a_dark_sample",
+          "nutnr_a_sample"
+        ],
+        "streamed": [
+          "nutnr_a_dark_sample",
+          "nutnr_a_sample",
+          "nutnr_a_status",
+          "nutnr_a_test"
+        ]
+      },
+      "4B-VELPTD302": {
+        "bad_streamed": [
+          "velpt_velocity_data"
+        ],
+        "streamed": [
+          "velpt_clock_data",
+          "velpt_user_configuration",
+          "velpt_velocity_data"
+        ]
+      },
+      "4F-PCO2WA301": {
+        "bad_streamed": [
+          "pco2w_a_regular_status",
+          "pco2w_a_sami_data_record_cal"
+        ],
+        "streamed": [
+          "pco2w_a_battery_voltage",
+          "pco2w_a_configuration",
+          "pco2w_a_regular_status",
+          "pco2w_a_sami_data_record",
+          "pco2w_a_sami_data_record_cal",
+          "pco2w_a_thermistor_voltage"
+        ]
+      }
+    }
+  },
+  "RS03AXSM": {
+    "PN03B": {
+      "PN3B-LVPS": {
+        "streamed": [
+          "primary_node_eng_data"
+        ]
+      },
+      "PN3B-PRI": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP1": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP2": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP3": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP4": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP5": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      },
+      "PN3B-SP6": {
+        "streamed": [
+          "primary_node_out_of_band_port_data"
+        ]
+      }
+    }
+  },
+  "RS03CCAL": {
+    "MJ03F": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-BOTPTA301": {
+        "streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_leveling",
+          "botpt_lily_sample",
+          "botpt_nano_sample",
+          "botpt_nano_sample_15sec",
+          "botpt_nano_sample_24hour",
+          "botpt_status",
+          "instrument_predicted_tide"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-HYDLFA305": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-OBSBBA301": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "12-CTDPFB305": {
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ]
+      }
+    }
+  },
+  "RS03ECAL": {
+    "MJ03E": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSSPA303": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-BOTPTA302": {
+        "bad_streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_sample"
+        ],
+        "streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_leveling",
+          "botpt_lily_sample",
+          "botpt_nano_sample",
+          "botpt_nano_sample_15sec",
+          "botpt_nano_sample_24hour",
+          "botpt_status",
+          "instrument_predicted_tide"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "deep_profiler_dock_eng_data",
+          "secondary_node_eng_data",
+          "secondary_node_port_eng_data",
+          "shallow_profiler_winch_eng_data"
+        ]
+      },
+      "08-IP4": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "08-OBSSPA304": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "09-HYDLFA304": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "09-IP5": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-OBSBBA302": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "12-CTDPFB306": {
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      }
+    }
+  },
+  "RS03INT1": {
+    "MJ03C": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "07-D1000A301": {
+        "streamed": [
+          "d1000_sample"
+        ]
+      },
+      "07-IP3": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-IP5": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "09-THSPHA301": {
+        "streamed": [
+          "thsph_sample"
+        ]
+      },
+      "09-TRHPHA302": {
+        "bad_streamed": [
+          "trhph_sample"
+        ],
+        "streamed": [
+          "trhph_sample"
+        ]
+      },
+      "10-IP6": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "10-TRHPHA301": {
+        "streamed": [
+          "trhph_sample"
+        ]
+      }
+    }
+  },
+  "RS03INT2": {
+    "MJ03D": {
+      "00-ENG": {
+        "streamed": [
+          "secondary_node_eng_data"
+        ]
+      },
+      "05-IP1": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "05-OBSSPA305": {
+        "streamed": [
+          "antelope_metadata"
+        ]
+      },
+      "06-BOTPTA303": {
+        "bad_streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_sample"
+        ],
+        "streamed": [
+          "botpt_heat_sample",
+          "botpt_iris_sample",
+          "botpt_lily_leveling",
+          "botpt_lily_sample",
+          "botpt_nano_sample",
+          "botpt_nano_sample_15sec",
+          "botpt_nano_sample_24hour",
+          "instrument_predicted_tide"
+        ]
+      },
+      "06-IP2": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "11-CTDPFB307": {
+        "bad_streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ],
+        "streamed": [
+          "ctdpf_optode_calibration_coefficients",
+          "ctdpf_optode_configuration",
+          "ctdpf_optode_hardware",
+          "ctdpf_optode_sample"
+        ]
+      },
+      "12-IP8": {
+        "streamed": [
+          "secondary_node_port_eng_data"
+        ]
+      },
+      "12-VEL3DB304": {
+        "bad_streamed": [
+          "vel3d_b_sample"
+        ],
+        "streamed": [
+          "vel3d_b_engineering",
+          "vel3d_b_sample"
+        ]
+      }
+    }
+  }
+}
