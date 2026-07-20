@@ -59,50 +59,9 @@ st.markdown("---")
 # ══════════════════════════════════════════════════════════════
 
 st.markdown("## LLM Provider")
-st.markdown("Choose between a local GGUF model (no internet required) or Fireworks AI cloud inference.")
+st.markdown("This application uses Fireworks AI for cloud inference.")
 
-provider = st.radio(
-    "Provider",
-    ["local", "fireworks"],
-    index=0 if config.get("llm_provider", "local") == "local" else 1,
-    format_func=lambda x: "Local (Gemma GGUF via llama.cpp)" if x == "local" else "Cloud (Fireworks AI)",
-    horizontal=True,
-    key="provider_radio",
-)
-
-st.markdown("")
-
-if provider == "local":
-    st.markdown("### Local Model Configuration")
-
-    model_options = {
-        "Gemma 4 12B Q8_0 (Best quality, ~12GB VRAM)": "gemma4-coding-Q8_0.gguf",
-        "Gemma 4 12B Q4_K_M (Balanced, ~7GB VRAM)": "gemma4-coding-Q4_K_M.gguf",
-        "Gemma 4 12B Q2_K (Smallest, ~4GB VRAM)": "gemma4-coding-Q2_K.gguf",
-    }
-
-    current_filename = config.get("model_filename", "gemma4-coding-Q8_0.gguf")
-    current_idx = 0
-    for i, (label, fname) in enumerate(model_options.items()):
-        if fname == current_filename:
-            current_idx = i
-            break
-
-    selected_model = st.selectbox(
-        "Model",
-        list(model_options.keys()),
-        index=current_idx,
-        key="local_model_select",
-    )
-    model_filename = model_options[selected_model]
-
-    st.info(
-        "Models are downloaded automatically from HuggingFace on first use. "
-        "Ensure you have sufficient VRAM/RAM for the selected quantization."
-    )
-
-else:  # fireworks
-    st.markdown("### Fireworks AI Configuration")
+st.markdown("### Fireworks AI Configuration")
 
     from core.config import settings as _settings
 
@@ -169,40 +128,28 @@ st.markdown("---")
 if st.button("💾 Save Settings", type="primary", width='stretch'):
     new_config = {
         "display_name": display_name,
-        "llm_provider": provider,
-        "model_repo_id": "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
+        "llm_provider": "fireworks",
+        "fireworks_model": fireworks_model,
     }
-
-    if provider == "local":
-        new_config["model_filename"] = model_filename
-        new_config["fireworks_model"] = config.get("fireworks_model", "accounts/fireworks/models/llama-v3p3-70b-instruct")
-    else:
-        new_config["model_filename"] = config.get("model_filename", "gemma4-coding-Q8_0.gguf")
-        new_config["fireworks_model"] = fireworks_model
 
     save_config(new_config)
 
     # Hot-reload the LLM manager
     if st.session_state.llm_manager is not None:
-        from core.config import settings, get_model_config
+        from core.config import settings
 
         st.session_state.llm_manager.set_provider(
-            provider=provider,
             fireworks_api_key=settings.FIREWORKS_API_KEY,
             fireworks_model=new_config.get("fireworks_model", ""),
-            model_config=get_model_config(),
         )
 
     st.success("Settings saved successfully!")
 
     # Show current provider status
-    if provider == "fireworks":
-        if settings.FIREWORKS_API_KEY:
-            st.info(f"Active provider: Fireworks AI — `{new_config['fireworks_model']}`")
-        else:
-            st.warning("Fireworks AI selected but no API key found in secrets.")
+    if settings.FIREWORKS_API_KEY:
+        st.info(f"Active provider: Fireworks AI — `{new_config['fireworks_model']}`")
     else:
-        st.info(f"Active provider: Local — `{new_config['model_filename']}`")
+        st.warning("Fireworks AI selected but no API key found in secrets.")
 
 
 # ══════════════════════════════════════════════════════════════
@@ -214,14 +161,7 @@ st.markdown("##### Current Status")
 
 status_col1, status_col2 = st.columns(2)
 with status_col1:
-    current_provider = config.get("llm_provider", "local")
-    if config.get("llm_provider", "local") == "fireworks":
-        st.metric("LLM Provider", "Fireworks AI")
-    else:
-        st.metric("LLM Provider", "Local")
+    st.metric("LLM Provider", "Fireworks AI")
 
 with status_col2:
-    if current_provider == "fireworks":
-        st.metric("Model", config.get("fireworks_model", "—").split("/")[-1])
-    else:
-        st.metric("Model", config.get("model_filename", "—"))
+    st.metric("Model", config.get("fireworks_model", "—").split("/")[-1])

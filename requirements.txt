@@ -6,9 +6,7 @@ netCDF4
 requests
 chromadb
 faiss-cpu
-llama-cpp-python
 flake8
-huggingface-hub
 openai
 dask
 sqlalchemy

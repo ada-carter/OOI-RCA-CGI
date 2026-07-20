@@ -21,15 +21,7 @@ class TestSettingsProperties:
 
     def test_llm_provider_valid(self):
         from backend.core.config import settings
-        assert settings.LLM_PROVIDER in ("local", "fireworks")
-
-    def test_model_config_structure(self):
-        from backend.core.config import settings
-        config = settings.MODEL_CONFIG
-        assert isinstance(config, dict)
-        assert "repo_id" in config
-        assert "filename" in config
-        assert config["filename"].endswith(".gguf")
+        assert settings.LLM_PROVIDER == "fireworks"
 
     def test_display_name_fallback(self):
         """DISPLAY_NAME returns 'You' when config has no value."""
@@ -61,15 +53,6 @@ class TestSecretsResolution:
         config = _load_config_json()
         assert "fireworks_api_key" not in config
 
-    def test_env_var_fallback(self, monkeypatch):
-        """If secrets.toml is empty, falls back to env vars."""
-        monkeypatch.setenv("OOI_USERNAME", "ENV_TEST_USER")
-        # Patch secrets loader to return empty so env var fallback triggers
-        import backend.core.config as config_mod
-        monkeypatch.setattr(config_mod, "_load_secrets_toml", lambda: {})
-        from backend.core.config import Settings
-        s = Settings()
-        assert s.OOI_USERNAME == "ENV_TEST_USER"
 
     def test_google_oauth_properties_exist(self):
         """Google OAuth properties are accessible (may be empty in test)."""

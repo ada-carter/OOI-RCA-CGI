@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 import logging
-from huggingface_hub import hf_hub_download
 
 logger = logging.getLogger(__name__)
 
@@ -40,24 +39,12 @@ def _load_config_json() -> dict:
     return {}
 
 
-def get_model_config() -> dict:
-    data = _load_config_json()
-    return {
-        "repo_id": data.get("model_repo_id", "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF"),
-        "filename": data.get("model_filename", "gemma4-coding-Q8_0.gguf"),
-    }
+
 
 
 class Settings:
     PROJECT_NAME: str = "OOI RCA Copilot"
     API_V1_STR: str = "/api/v1"
-
-    # Model config
-    @property
-    def MODEL_CONFIG(self) -> dict:
-        return get_model_config()
-
-    @property
     def OOI_USERNAME(self) -> str:
         secrets = _load_secrets_toml()
         if secrets.get("OOI_USERNAME"):
@@ -75,9 +62,8 @@ class Settings:
 
     @property
     def LLM_PROVIDER(self) -> str:
-        """'local' (llama.cpp) or 'fireworks' (Fireworks AI cloud)."""
-        data = _load_config_json()
-        return data.get("llm_provider", "local") or os.environ.get("LLM_PROVIDER", "local")
+        """Always use 'fireworks' (cloud). Local inference removed for cloud compat."""
+        return "fireworks"
 
     @property
     def FIREWORKS_API_KEY(self) -> str:

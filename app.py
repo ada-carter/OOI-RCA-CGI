@@ -72,13 +72,7 @@ with col3:
 from streamlit_utils.session import get_llm_manager
 try:
     mgr = get_llm_manager(st)
-    provider = mgr.provider_name
-    if provider == "fireworks":
+    if mgr.provider_name == "fireworks":
         st.success("Connected to **Fireworks AI** cloud LLM")
-    else:
-        if mgr.model is not None:
-            st.success("Local LLM loaded and ready (**Gemma GGUF**)")
-        else:
-            st.warning("Local LLM provider selected but model not loaded. Check Settings.")
 except Exception as e:
     st.error(f"LLM initialization error: {e}")

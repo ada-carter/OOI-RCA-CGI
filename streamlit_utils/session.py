@@ -52,8 +52,6 @@ def get_llm_manager(st):
         from core.llm_manager import LLMManager
 
         st.session_state.llm_manager = LLMManager(
-            model_config=settings.MODEL_CONFIG,
-            provider=settings.LLM_PROVIDER,
             fireworks_api_key=settings.FIREWORKS_API_KEY,
             fireworks_model=settings.FIREWORKS_MODEL,
         )

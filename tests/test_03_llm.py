@@ -14,21 +14,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 
 class TestLLMManagerInit:
-    def test_local_provider_init(self):
-        """LLMManager initializes with local provider."""
-        from backend.core.llm_manager import LLMManager
-        mgr = LLMManager(
-            model_config={"repo_id": "test", "filename": "test.gguf"},
-            provider="local",
-        )
-        assert mgr.provider_name == "local"
-
     def test_fireworks_provider_init(self):
         """LLMManager initializes with fireworks provider."""
         from backend.core.llm_manager import LLMManager
         mgr = LLMManager(
-            model_config={"repo_id": "test", "filename": "test.gguf"},
-            provider="fireworks",
             fireworks_api_key="test_key",
             fireworks_model="accounts/fireworks/models/test-model",
         )
@@ -36,33 +25,25 @@ class TestLLMManagerInit:
 
 
 class TestProviderSwapping:
-    def test_toggle_local_to_fireworks(self):
-        """Hot-swap from local to fireworks and back."""
+    def test_update_fireworks_settings(self):
+        """Update fireworks settings via set_provider."""
         from backend.core.llm_manager import LLMManager
         mgr = LLMManager(
-            model_config={"repo_id": "test", "filename": "test.gguf"},
-            provider="local",
-        )
-        assert mgr.provider_name == "local"
-
-        mgr.set_provider(
-            provider="fireworks",
             fireworks_api_key="test_key",
             fireworks_model="accounts/fireworks/models/test",
         )
         assert mgr.provider_name == "fireworks"
 
-        mgr.set_provider(provider="local")
-        assert mgr.provider_name == "local"
-
-    def test_model_property_none_in_testing(self):
-        """In TESTING mode, model property returns None (no GPU load)."""
-        from backend.core.llm_manager import LLMManager
-        mgr = LLMManager(
-            model_config={"repo_id": "test", "filename": "test.gguf"},
-            provider="local",
+        mgr.set_provider(
+            fireworks_api_key="new_key",
+            fireworks_model="accounts/fireworks/models/new_model",
         )
-        # In test mode, local model won't load
+        assert mgr.provider_name == "fireworks"
+
+    def test_model_property_none(self):
+        """Model property returns None for cloud providers."""
+        from backend.core.llm_manager import LLMManager
+        mgr = LLMManager()
         assert mgr.model is None
 
 

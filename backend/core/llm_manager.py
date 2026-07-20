@@ -104,7 +104,7 @@ def get_system_prompt(project_purpose: str = "") -> str:
         "  - `title`, `color`, `color_col`, `plot_type` (line/scatter), and `invert_y` (true/false) are OPTIONAL.\n"
         "  - Multi-Sensor Overlay: You can plot multiple datasets on the same graph by passing a comma-separated list of files to `dataset` (e.g. `dataset=\"data1.nc,data2.nc\"`). If doing this, you MUST provide a comma-separated list of `labels` (e.g. `labels=\"Shallow Profiler,Deep Profiler\"`).\n"
         "  - ONLY use columns that were provided in the Observation.\n"
-        "  - NEVER use `preferred_timestamp` or `port_timestamp` for the x-axis.\n\n"
+        "  - NEVER use `preferred_timestamp` directly for the x-axis. Instead, you MUST read the string value inside the `preferred_timestamp` column (e.g., 'driver_timestamp', 'internal_timestamp', or 'port_timestamp') and use THAT numerical column for the x-axis.\n\n"
         "Oceanographic Plotting Recipes (Use these exact structures if applicable):\n"
         "  1. CTD Time Series: x_col=\"time\", plot_type=\"line\"\n"
         "  2. Depth Profile (CTD/Any): y_col=\"depth\" (or pressure), invert_y=\"true\", plot_type=\"scatter\", color_col=\"time\"\n"
@@ -157,105 +157,6 @@ def get_system_prompt(project_purpose: str = "") -> str:
         "- NEVER write code that directly calls M2MClient, requests, urllib, or any HTTP library.\n"
         "- If you need data, use <search_instruments> then <m2m_request>. There is no other way.\n"
     )
-
-
-# ──────────────────────────────────────────────────────────────
-# Provider: Local llama.cpp
-# ──────────────────────────────────────────────────────────────
-
-class LocalLlamaProvider:
-    """Wraps llama-cpp-python for local GGUF model inference."""
-
-    def __init__(self, model_config: dict):
-        self.model_config = model_config
-        self.model = None
-        self.initialize_model()
-
-    def initialize_model(self):
-        if os.environ.get("TESTING") == "1":
-            logger.info("TESTING env var set. Skipping actual Llama model initialization.")
-            return
-
-        repo_id = self.model_config.get("repo_id", "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF")
-        filename = self.model_config.get("filename", "gemma4-coding-Q8_0.gguf")
-
-        logger.info(f"Initializing Llama from pretrained: repo_id={repo_id}, filename={filename}")
-        try:
-            from llama_cpp import Llama
-            import warnings
-            with warnings.catch_warnings():
-                warnings.filterwarnings("ignore", message=".*local_dir_use_symlinks.*", category=UserWarning)
-                self.model = Llama.from_pretrained(
-                    repo_id=repo_id,
-                    filename=filename,
-                    n_ctx=88000,
-                    n_gpu_layers=-1,
-                    flash_attn=True,
-                    verbose=False
-                )
-            logger.info("Llama initialized successfully with GPU offloading and Flash Attention.")
-        except Exception as e:
-            logger.error(f"Failed to initialize Llama model: {e}")
-
-    def generate_response(self, prompt: str, is_raw: bool = False) -> str:
-        if not self.model:
-            return "Error: Local LLM is not initialized/loaded."
-
-        try:
-            formatted_prompt = self._format_prompt(prompt, is_raw)
-            output = self.model(
-                formatted_prompt,
-                max_tokens=None,
-                stop=["<end_of_turn>", "<eos>", "<|im_end|>"],
-                echo=False
-            )
-            response_text = output["choices"][0]["text"].strip()
-            return self._clean_response(response_text)
-        except Exception as e:
-            logger.error(f"Inference error: {e}")
-            return f"Inference Error: {str(e)}"
-
-    def generate_response_stream(self, prompt: str, is_raw: bool = False) -> Generator[str, None, None]:
-        if not self.model:
-            yield "Error: Local LLM is not initialized/loaded."
-            return
-
-        try:
-            formatted_prompt = self._format_prompt(prompt, is_raw)
-            stream = self.model(
-                formatted_prompt,
-                max_tokens=None,
-                stop=["<end_of_turn>", "<eos>", "<|im_end|>"],
-                echo=False,
-                stream=True
-            )
-            for chunk in stream:
-                token = chunk["choices"][0]["text"]
-                if token:
-                    yield token
-        except Exception as e:
-            logger.error(f"Inference stream error: {e}")
-            yield f" [Inference Error: {str(e)}]"
-
-    def tokenize(self, text: str) -> list:
-        """Tokenize text for context window management."""
-        if self.model:
-            return self.model.tokenize(text.encode("utf-8"))
-        return []
-
-    def _format_prompt(self, prompt: str, is_raw: bool) -> str:
-        if is_raw:
-            return prompt
-        return (
-            f"<start_of_turn>user\n[System instructions]\n{get_system_prompt()}\n\n"
-            f"User message: {prompt}<end_of_turn>\n<start_of_turn>model\n"
-        )
-
-    @staticmethod
-    def _clean_response(text: str) -> str:
-        for tag in ["<channel|>", "<|channel|>", "<channel|>thought", "<|channel>thought", "thought\n"]:
-            text = text.replace(tag, "")
-        return text.strip()
 
 
 # ──────────────────────────────────────────────────────────────
@@ -387,42 +288,28 @@ class FireworksProvider:
 class LLMManager:
     """Manages the active LLM provider and dispatches inference calls."""
 
-    def __init__(self, model_config: dict, provider: str = "local",
-                 fireworks_api_key: str = "", fireworks_model: str = ""):
-        self.model_config = model_config
-        self._provider_name = provider
+    def __init__(self, fireworks_api_key: str = "", fireworks_model: str = ""):
         self._fireworks_api_key = fireworks_api_key
         self._fireworks_model = fireworks_model
         self._provider = None
         self._init_provider()
 
     def _init_provider(self):
-        if self._provider_name == "fireworks":
-            logger.info(f"Initializing Fireworks AI provider (model={self._fireworks_model})")
-            self._provider = FireworksProvider(self._fireworks_api_key, self._fireworks_model)
-        else:
-            logger.info("Initializing Local Llama provider")
-            self._provider = LocalLlamaProvider(self.model_config)
+        logger.info(f"Initializing Fireworks AI provider (model={self._fireworks_model})")
+        self._provider = FireworksProvider(self._fireworks_api_key, self._fireworks_model)
 
-    def set_provider(self, provider: str, fireworks_api_key: str = "",
-                     fireworks_model: str = "", model_config: dict = None):
+    def set_provider(self, fireworks_api_key: str = "", fireworks_model: str = ""):
         """Hot-swap the LLM provider at runtime."""
-        self._provider_name = provider
         self._fireworks_api_key = fireworks_api_key
         self._fireworks_model = fireworks_model
-        if model_config:
-            self.model_config = model_config
         self._init_provider()
 
     @property
     def provider_name(self) -> str:
-        return self._provider_name
+        return "fireworks"
 
     @property
     def model(self):
-        """Backwards compatibility — returns the underlying model object."""
-        if hasattr(self._provider, "model"):
-            return self._provider.model
         return None
 
     def generate_response(self, prompt: str, is_raw: bool = False) -> str:
@@ -436,5 +323,5 @@ class LLMManager:
         return self._provider.tokenize(text)
 
     def initialize_model(self):
-        """Re-initialize the current provider (for model reload)."""
+        """Re-initialize the current provider."""
         self._init_provider()
