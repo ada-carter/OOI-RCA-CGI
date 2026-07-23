@@ -85,7 +85,13 @@ class ZarrClient:
             ds = xr.open_zarr(mapper, consolidated=False)
 
         if "time" in ds.coords and (begin_dt or end_dt):
-            ds = ds.sel(time=slice(begin_dt, end_dt))
+            # OOI datetimes are UTC and the store's time coordinate is tz-naive
+            # (datetime64, implicit UTC). Drop the trailing 'Z'/offset so the
+            # slice bounds parse as tz-naive and match the coordinate — otherwise
+            # xarray raises "Cannot compare tz-naive and tz-aware timestamps".
+            def _naive(dt):
+                return dt.replace("Z", "").replace("+00:00", "") if dt else dt
+            ds = ds.sel(time=slice(_naive(begin_dt), _naive(end_dt)))
 
         logger.info(f"Opened cloud Zarr store {dataset_id}: {dict(ds.sizes)}")
         return ds

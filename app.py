@@ -71,8 +71,8 @@ with col3:
 # Provider status
 from streamlit_utils.session import get_llm_manager
 try:
+    from core.config import settings
     mgr = get_llm_manager(st)
-    if mgr.provider_name == "fireworks":
-        st.success("Connected to **Fireworks AI** cloud LLM")
+    st.success(f"LLM: **{settings.LLM_PROVIDER}** — `{settings.LLM_MODEL}`  ·  {settings.LLM_API_BASE}")
 except Exception as e:
     st.error(f"LLM initialization error: {e}")

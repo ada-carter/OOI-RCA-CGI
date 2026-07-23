@@ -45,6 +45,8 @@ def _load_config_json() -> dict:
 class Settings:
     PROJECT_NAME: str = "OOI RCA Copilot"
     API_V1_STR: str = "/api/v1"
+
+    @property
     def OOI_USERNAME(self) -> str:
         secrets = _load_secrets_toml()
         if secrets.get("OOI_USERNAME"):
@@ -62,20 +64,35 @@ class Settings:
 
     @property
     def LLM_PROVIDER(self) -> str:
-        """Always use 'fireworks' (cloud). Local inference removed for cloud compat."""
-        return "fireworks"
-
-    @property
-    def FIREWORKS_API_KEY(self) -> str:
-        secrets = _load_secrets_toml()
-        if secrets.get("FIREWORKS_API_KEY"):
-            return secrets["FIREWORKS_API_KEY"]
-        return os.environ.get("FIREWORKS_API_KEY", "")
-
-    @property
-    def FIREWORKS_MODEL(self) -> str:
+        """Label for the active endpoint (e.g. 'fireworks', 'local'). Display only."""
         data = _load_config_json()
-        return data.get("fireworks_model", "accounts/fireworks/models/llama-v3p3-70b-instruct")
+        return data.get("llm_provider", "fireworks")
+
+    @property
+    def LLM_API_BASE(self) -> str:
+        """OpenAI-compatible base URL. Point at Fireworks, OpenAI, vLLM, Ollama, etc.
+
+        Local example (Ollama): "http://localhost:11434/v1"
+        """
+        data = _load_config_json()
+        return data.get("llm_api_base", "https://api.fireworks.ai/inference/v1")
+
+    @property
+    def LLM_MODEL(self) -> str:
+        """Active model id (config.json `llm_model`)."""
+        data = _load_config_json()
+        return data.get("llm_model", "accounts/fireworks/models/llama-v3p3-70b-instruct")
+
+    @property
+    def LLM_API_KEY(self) -> str:
+        """Key for the active endpoint. Local servers (Ollama, LM Studio) ignore it."""
+        secrets = _load_secrets_toml()
+        return (
+            secrets.get("LLM_API_KEY")
+            or secrets.get("FIREWORKS_API_KEY")
+            or os.environ.get("LLM_API_KEY")
+            or os.environ.get("FIREWORKS_API_KEY", "")
+        )
 
     @property
     def DISPLAY_NAME(self) -> str:

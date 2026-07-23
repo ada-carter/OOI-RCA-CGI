@@ -14,44 +14,48 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 
 class TestLLMManagerInit:
-    def test_fireworks_provider_init(self):
-        """LLMManager initializes with fireworks provider."""
+    def test_provider_init(self):
+        """LLMManager initializes with the configured provider."""
         from backend.core.llm_manager import LLMManager
         mgr = LLMManager(
-            fireworks_api_key="test_key",
-            fireworks_model="accounts/fireworks/models/test-model",
+            api_key="test_key",
+            model="accounts/fireworks/models/test-model",
+            provider_name="fireworks",
         )
         assert mgr.provider_name == "fireworks"
 
 
 class TestProviderSwapping:
-    def test_update_fireworks_settings(self):
-        """Update fireworks settings via set_provider."""
+    def test_update_settings(self):
+        """Update provider settings via set_provider."""
         from backend.core.llm_manager import LLMManager
         mgr = LLMManager(
-            fireworks_api_key="test_key",
-            fireworks_model="accounts/fireworks/models/test",
+            api_key="test_key",
+            model="accounts/fireworks/models/test",
+            provider_name="fireworks",
         )
         assert mgr.provider_name == "fireworks"
 
         mgr.set_provider(
-            fireworks_api_key="new_key",
-            fireworks_model="accounts/fireworks/models/new_model",
+            api_key="new_key",
+            model="qwen2.5:14b",
+            api_base="http://localhost:11434/v1",
+            provider_name="local",
         )
-        assert mgr.provider_name == "fireworks"
+        assert mgr.provider_name == "local"
 
-    def test_model_property_none(self):
-        """Model property returns None for cloud providers."""
+    def test_model_property(self):
+        """Model property returns the configured model id."""
         from backend.core.llm_manager import LLMManager
-        mgr = LLMManager()
-        assert mgr.model is None
+        mgr = LLMManager(model="test-model")
+        assert mgr.model == "test-model"
 
 
-class TestFireworksMessageBuilding:
+class TestMessageBuilding:
     def test_user_message_structure(self):
-        """FireworksProvider builds system + user messages from a prompt."""
-        from backend.core.llm_manager import FireworksProvider
-        provider = FireworksProvider(api_key="test", model="test-model")
+        """OpenAICompatibleProvider builds system + user messages from a prompt."""
+        from backend.core.llm_manager import OpenAICompatibleProvider
+        provider = OpenAICompatibleProvider(api_key="test", model="test-model")
 
         messages = provider._build_messages("Hello world", is_raw=False)
         assert messages[0]["role"] == "system"
@@ -60,8 +64,8 @@ class TestFireworksMessageBuilding:
 
     def test_raw_message_passthrough(self):
         """Raw prompts are passed through as-is in a user message."""
-        from backend.core.llm_manager import FireworksProvider
-        provider = FireworksProvider(api_key="test", model="test-model")
+        from backend.core.llm_manager import OpenAICompatibleProvider
+        provider = OpenAICompatibleProvider(api_key="test", model="test-model")
 
         messages = provider._build_messages("raw prompt text", is_raw=True)
         # Raw mode should still produce at least one message

@@ -187,21 +187,25 @@ def get_system_prompt(project_purpose: str = "") -> str:
 # Provider: Fireworks AI (OpenAI-compatible API)
 # ──────────────────────────────────────────────────────────────
 
-class FireworksProvider:
-    """Cloud LLM provider using the Fireworks AI API."""
+class OpenAICompatibleProvider:
+    """Provider for any OpenAI-compatible chat-completions endpoint.
+
+    Defaults to Fireworks AI, but `api_base` can point at OpenAI, vLLM, or a
+    local server such as Ollama / LM Studio. Local servers ignore the API key.
+    """
 
     API_BASE = "https://api.fireworks.ai/inference/v1"
 
-    def __init__(self, api_key: str, model: str):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str, api_base: str = None):
+        self.api_base = api_base or self.API_BASE
+        # The OpenAI client requires a non-empty key; local servers ignore it.
+        self.api_key = api_key or "not-needed"
         self.model = model
-        if not self.api_key:
-            logger.warning("Fireworks API key is empty — cloud inference will fail.")
 
     def generate_response(self, prompt: str, is_raw: bool = False) -> str:
         try:
             from openai import OpenAI
-            client = OpenAI(base_url=self.API_BASE, api_key=self.api_key)
+            client = OpenAI(base_url=self.api_base, api_key=self.api_key)
 
             messages = self._build_messages(prompt, is_raw)
             response = client.chat.completions.create(
@@ -217,7 +221,7 @@ class FireworksProvider:
     def generate_response_stream(self, prompt: str, is_raw: bool = False) -> Generator[str, None, None]:
         try:
             from openai import OpenAI
-            client = OpenAI(base_url=self.API_BASE, api_key=self.api_key)
+            client = OpenAI(base_url=self.api_base, api_key=self.api_key)
 
             messages = self._build_messages(prompt, is_raw)
             stream = client.chat.completions.create(
@@ -312,29 +316,36 @@ class FireworksProvider:
 class LLMManager:
     """Manages the active LLM provider and dispatches inference calls."""
 
-    def __init__(self, fireworks_api_key: str = "", fireworks_model: str = ""):
-        self._fireworks_api_key = fireworks_api_key
-        self._fireworks_model = fireworks_model
+    def __init__(self, api_key: str = "", model: str = "",
+                 api_base: str = "", provider_name: str = "fireworks"):
+        self._api_key = api_key
+        self._model = model
+        self._api_base = api_base
+        self._provider_name = provider_name
         self._provider = None
         self._init_provider()
 
     def _init_provider(self):
-        logger.info(f"Initializing Fireworks AI provider (model={self._fireworks_model})")
-        self._provider = FireworksProvider(self._fireworks_api_key, self._fireworks_model)
+        logger.info(f"Initializing LLM provider '{self._provider_name}' "
+                    f"(model={self._model}, endpoint={self._api_base or OpenAICompatibleProvider.API_BASE})")
+        self._provider = OpenAICompatibleProvider(self._api_key, self._model, self._api_base or None)
 
-    def set_provider(self, fireworks_api_key: str = "", fireworks_model: str = ""):
-        """Hot-swap the LLM provider at runtime."""
-        self._fireworks_api_key = fireworks_api_key
-        self._fireworks_model = fireworks_model
+    def set_provider(self, api_key: str = "", model: str = "",
+                     api_base: str = "", provider_name: str = "fireworks"):
+        """Hot-swap the LLM provider/endpoint at runtime."""
+        self._api_key = api_key
+        self._model = model
+        self._api_base = api_base
+        self._provider_name = provider_name
         self._init_provider()
 
     @property
     def provider_name(self) -> str:
-        return "fireworks"
+        return self._provider_name
 
     @property
-    def model(self):
-        return None
+    def model(self) -> str:
+        return self._model
 
     def generate_response(self, prompt: str, is_raw: bool = False) -> str:
         return self._provider.generate_response(prompt, is_raw)

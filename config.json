@@ -1,7 +1,7 @@
 {
-  "display_name": "Ada",
-  "llm_provider": "fireworks",
-  "model_repo_id": "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
-  "model_filename": "gemma4-coding-Q2_K.gguf",
+  "display_name": "Joe",
+  "llm_provider": "local",
+  "llm_api_base": "http://localhost:11434/v1",
+  "llm_model": "qwen2.5:14b",
   "fireworks_model": "accounts/fireworks/models/qwen3p7-plus"
 }
