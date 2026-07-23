@@ -31,8 +31,9 @@ class ChatController:
         maps = [{"lat": float(lat), "lon": float(lon), "title": title} for lat, lon, title in maps_extracted]
 
         # Strip all tags and system messages
-        for tag in [r'<m2m_request\s+[^>]*/\s*>', r'<update_view\s+[^/>]+/?>', 
-                   r'<search_instruments\s+[^>]*/\s*>', r'<render_map\s+[^>]*/\s*>', 
+        for tag in [r'<m2m_request\s+[^>]*/\s*>', r'<zarr_request\s+[^>]*/\s*>',
+                   r'<update_view\s+[^/>]+/?>',
+                   r'<search_instruments\s+[^>]*/\s*>', r'<render_map\s+[^>]*/\s*>',
                    r'\[System:.*?\]']:
             response = re.sub(tag, '', response)
 
