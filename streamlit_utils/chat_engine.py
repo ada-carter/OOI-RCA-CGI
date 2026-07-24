@@ -152,18 +152,34 @@ def execute_search_instruments(params: Dict[str, str]) -> str:
                 logger.warning(f"Failed to fetch metadata for {subsite}/{node}/{sensor}: {e}")
                 live_metadata[(subsite, node, sensor)] = "API_ERROR"
 
+    # Cloud Zarr fast-path availability — checked only for narrow (live) searches
+    # so it stays bounded. Degrades to no-flag if s3fs/network/store unavailable.
+    zarr_client = None
+    zarr_seen = {}
+    if fetched_live:
+        from services.zarr_client import ZarrClient
+        zarr_client = ZarrClient()
+
+    def _zarr_available(subsite, node, sensor, method, stream) -> bool:
+        if zarr_client is None:
+            return False
+        key = (subsite, node, sensor, method, stream)
+        if key not in zarr_seen:
+            zarr_seen[key] = zarr_client.dataset_exists(*key)
+        return zarr_seen[key]
+
     # Format output
     output_lines = [f"Found {len(results)} matching instrument endpoint(s):\n"]
-    
+
     for r in results:
         subsite = r['subsite']
         node = r['node']
         sensor = r['sensor']
         method = r['method']
         stream = r['stream']
-        
+
         base_line = f"  - {subsite} / {node} / {sensor} | method: {method} | stream: {stream}"
-        
+
         if fetched_live:
             meta = live_metadata.get((subsite, node, sensor))
             if meta == "API_ERROR":
@@ -172,7 +188,10 @@ def execute_search_instruments(params: Dict[str, str]) -> str:
                 bounds = meta.get((method, stream))
                 if bounds:
                     begin_dt, end_dt = bounds
-                    output_lines.append(f"{base_line} | 🟢 AVAILABLE: {begin_dt} to {end_dt}")
+                    line = f"{base_line} | 🟢 AVAILABLE: {begin_dt} to {end_dt}"
+                    if _zarr_available(subsite, node, sensor, method, stream):
+                        line += " | ⚡ CLOUD ZARR AVAILABLE (fast path — no wait)"
+                    output_lines.append(line)
                 else:
                     output_lines.append(f"{base_line} | 🔴 UNAVAILABLE (Deprecated on OOI)")
             else:
@@ -197,6 +216,22 @@ def parse_m2m_request(text: str) -> Optional[Dict[str, str]]:
     """Parse <m2m_request .../> or <md2m_request .../> tag from LLM output. Returns dict or None."""
     pattern = r'<(?:m2m|md2m)_request\s+([^>]*)/\s*>'
     match = re.search(pattern, text, re.DOTALL)
+    if not match:
+        return None
+    attrs_str = match.group(1)
+    result = {}
+    for key in ["subsite", "node", "sensor", "method", "stream", "begin_dt", "end_dt"]:
+        attr_match = re.search(rf'{key}\s*=\s*["\']([^"\']+)["\']', attrs_str)
+        if attr_match:
+            result[key] = attr_match.group(1)
+    if len(result) == 7:
+        return result
+    return None
+
+
+def parse_zarr_request(text: str) -> Optional[Dict[str, str]]:
+    """Parse <zarr_request .../> tag (cloud fast path). Same 7 attrs as m2m."""
+    match = re.search(r'<zarr_request\s+([^>]*)/\s*>', text, re.DOTALL)
     if not match:
         return None
     attrs_str = match.group(1)
@@ -373,6 +408,13 @@ def agent_loop(
                 "content": f"Observation (Instrument Search Results):\n{search_result}"
             })
             continue
+
+        # ── Parse <zarr_request> (cloud fast path) ──
+        if "/>" in accumulated_text and re.search(r'<zarr_request', accumulated_text):
+            zarr_params = parse_zarr_request(accumulated_text)
+            if zarr_params:
+                yield {"type": "zarr_request", "params": zarr_params, "accumulated": accumulated_text}
+                return
 
         # ── Parse <m2m_request> ──
         m2m_params = None

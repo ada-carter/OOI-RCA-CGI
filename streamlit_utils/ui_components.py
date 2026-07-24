@@ -278,23 +278,25 @@ def render_project_sidebar():
 # M2M Approval Card
 # ──────────────────────────────────────────────────────────────
 
-def render_m2m_approval(params: dict, approval_key: str) -> str:
+def render_m2m_approval(params: dict, approval_key: str, title: str = "M2M Data Download Request") -> str:
     """
-    Render an M2M approval card with Accept/Reject buttons.
+    Render a data-request approval card with Accept/Reject buttons.
     Returns "accepted", "rejected", or "pending".
+
+    `title` labels the card (e.g. the cloud Zarr fast path uses its own heading).
     """
     state_key = f"m2m_approval_{approval_key}"
 
     if state_key in st.session_state and st.session_state[state_key] != "pending":
         status = st.session_state[state_key]
         if status == "accepted":
-            st.success("M2M request approved — submitting to OOI API...")
+            st.success("Request approved — retrieving data...")
         else:
-            st.error("M2M request rejected.")
+            st.error("Request rejected.")
         return status
 
     st.markdown('<div class="m2m-approval-card">', unsafe_allow_html=True)
-    st.markdown("#### M2M Data Download Request")
+    st.markdown(f"#### {title}")
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(f"**Subsite:** `{params.get('subsite', '?')}`")

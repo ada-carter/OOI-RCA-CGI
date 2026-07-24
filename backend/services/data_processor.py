@@ -215,6 +215,39 @@ class DataProcessor:
     # Full pipeline
     # ──────────────────────────────────────────────────────
 
+    def process_dataset(
+        self,
+        ds: xr.Dataset,
+        output_dir: str,
+        variables: Optional[List[str]] = None,
+    ) -> Dict:
+        """Process an already-open dataset (e.g. from the cloud Zarr store).
+
+        Mirrors process_pipeline but skips file concatenation: time conversion,
+        QC masking, statistics, export. Returns the same result dict shape so
+        the chat/plot flow is identical to the M2M path.
+        """
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+
+        ds = self.convert_ntp_to_datetime(ds)
+        ds, qc_summary = self.apply_qc_flags(ds)
+        stats = self.generate_statistics(ds, variables)
+
+        nc_out = str(output_path / "processed.nc")
+        self.export_netcdf(ds, nc_out)
+
+        import json
+        (output_path / "qc_summary.json").write_text(json.dumps(qc_summary, indent=2))
+
+        return {
+            "statistics": stats,
+            "qc_summary": qc_summary,
+            "netcdf_path": nc_out,
+            "dimensions": dict(ds.sizes),
+            "variables": list(ds.data_vars),
+        }
+
     def process_pipeline(
         self,
         file_paths: List[str],

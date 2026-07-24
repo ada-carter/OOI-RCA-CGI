@@ -52,7 +52,9 @@ def get_llm_manager(st):
         from core.llm_manager import LLMManager
 
         st.session_state.llm_manager = LLMManager(
-            fireworks_api_key=settings.FIREWORKS_API_KEY,
-            fireworks_model=settings.FIREWORKS_MODEL,
+            api_key=settings.LLM_API_KEY,
+            model=settings.LLM_MODEL,
+            api_base=settings.LLM_API_BASE,
+            provider_name=settings.LLM_PROVIDER,
         )
     return st.session_state.llm_manager

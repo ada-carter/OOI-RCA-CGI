@@ -2,7 +2,7 @@ import urllib.parse
 import requests
 import streamlit as st
 import logging
-from backend.core.config import settings
+from core.config import settings
 
 logger = logging.getLogger(__name__)
 

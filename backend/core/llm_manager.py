@@ -57,7 +57,9 @@ def get_system_prompt(project_purpose: str = "") -> str:
         "  - The system will return matching endpoints with their subsite, node, sensor, method, and stream.\n"
         "  - If you narrow your search sufficiently (e.g. providing subsite, node, and sensor), the tool will\n"
         "    automatically fetch live metadata and display 🟢 AVAILABLE with the exact valid date ranges.\n"
-        "  - You will receive the results as an Observation and can then use them in an M2M request.\n\n"
+        "  - Results may also be marked ⚡ CLOUD ZARR AVAILABLE. When you see that flag, the fast\n"
+        "    cloud path exists for that endpoint — prefer <zarr_request> and offer it to the user.\n"
+        "  - You will receive the results as an Observation and can then use them in a data request.\n\n"
         "Examples:\n"
         "  Find all CTD sensors:           <search_instruments sensor=\"CTD\"/>\n"
         "  Find sensors at Slope Base:     <search_instruments subsite=\"RS01SBPS\"/>\n"
@@ -78,7 +80,28 @@ def get_system_prompt(project_purpose: str = "") -> str:
         "  - ONLY use subsite/node/sensor/method/stream values that were verified by <search_instruments>.\n"
         "  - NEVER guess date ranges. You MUST use <search_instruments> to get the exact AVAILABLE dates\n"
         "    for a stream (by narrowing the search), and ensure your request falls within that window.\n"
-        "  - You MUST use this tag for ALL data requests. NEVER write code that calls the M2M API.\n\n"
+        "  - You MUST use this tag for ALL M2M data requests. NEVER write code that calls the M2M API.\n\n"
+        "═══════════════════════════════════════════════════════════\n"
+        "TOOL 2B: REQUEST CLOUD ZARR DATA (FAST PATH) — <zarr_request .../>\n"
+        "═══════════════════════════════════════════════════════════\n"
+        "Load data directly from the OOI cloud Zarr store. This is the SAME data as M2M but\n"
+        "returns in SECONDS with no asynchronous THREDDS wait, because it reads only the\n"
+        "chunks in your time range from a pre-built cloud dataset.\n\n"
+        "Format (identical attributes to <m2m_request>):\n"
+        "  <zarr_request subsite=\"RS01SBPS\" node=\"SF01A\" sensor=\"2A-CTDPFA102\"\n"
+        "               method=\"streamed\" stream=\"ctdpf_sbe43_sample\"\n"
+        "               begin_dt=\"2026-06-24T00:00:00.000Z\" end_dt=\"2026-06-26T00:00:00.000Z\"/>\n\n"
+        "WHEN TO USE (prefer this over <m2m_request>):\n"
+        "  - ONLY when <search_instruments> marked that endpoint with ⚡ CLOUD ZARR AVAILABLE.\n"
+        "    That flag means the fast path exists for that exact subsite/node/sensor/method/stream.\n"
+        "  - When the fast path is available, TELL THE USER you can retrieve it in seconds via the\n"
+        "    cloud store instead of the slower M2M request, and use <zarr_request>. This streamlines\n"
+        "    their request — no waiting for the server to build and stage NetCDF files.\n"
+        "  - The user is still shown an approval dialog before anything is fetched.\n\n"
+        "Rules:\n"
+        "  - ALL 7 attributes are REQUIRED (same as m2m): subsite, node, sensor, method, stream, begin_dt, end_dt.\n"
+        "  - ONLY use values verified by <search_instruments>, and keep begin_dt/end_dt within the AVAILABLE window.\n"
+        "  - If a <zarr_request> fails or the endpoint is NOT flagged ⚡ CLOUD ZARR AVAILABLE, use <m2m_request> instead.\n\n"
         "═══════════════════════════════════════════════════════════\n"
         "TOOL 3: UPDATE THE UI — <update_view .../>\n"
         "═══════════════════════════════════════════════════════════\n"
@@ -155,7 +178,8 @@ def get_system_prompt(project_purpose: str = "") -> str:
         "- NEVER import modules, call APIs, or write functions.\n"
         "- NEVER use <run_script> tags — they are not supported.\n"
         "- NEVER write code that directly calls M2MClient, requests, urllib, or any HTTP library.\n"
-        "- If you need data, use <search_instruments> then <m2m_request>. There is no other way.\n"
+        "- If you need data, use <search_instruments> then <m2m_request> (or <zarr_request> when the\n"
+        "  endpoint is flagged ⚡ CLOUD ZARR AVAILABLE). There is no other way.\n"
     )
 
 
@@ -163,21 +187,25 @@ def get_system_prompt(project_purpose: str = "") -> str:
 # Provider: Fireworks AI (OpenAI-compatible API)
 # ──────────────────────────────────────────────────────────────
 
-class FireworksProvider:
-    """Cloud LLM provider using the Fireworks AI API."""
+class OpenAICompatibleProvider:
+    """Provider for any OpenAI-compatible chat-completions endpoint.
+
+    Defaults to Fireworks AI, but `api_base` can point at OpenAI, vLLM, or a
+    local server such as Ollama / LM Studio. Local servers ignore the API key.
+    """
 
     API_BASE = "https://api.fireworks.ai/inference/v1"
 
-    def __init__(self, api_key: str, model: str):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str, api_base: str = None):
+        self.api_base = api_base or self.API_BASE
+        # The OpenAI client requires a non-empty key; local servers ignore it.
+        self.api_key = api_key or "not-needed"
         self.model = model
-        if not self.api_key:
-            logger.warning("Fireworks API key is empty — cloud inference will fail.")
 
     def generate_response(self, prompt: str, is_raw: bool = False) -> str:
         try:
             from openai import OpenAI
-            client = OpenAI(base_url=self.API_BASE, api_key=self.api_key)
+            client = OpenAI(base_url=self.api_base, api_key=self.api_key)
 
             messages = self._build_messages(prompt, is_raw)
             response = client.chat.completions.create(
@@ -193,7 +221,7 @@ class FireworksProvider:
     def generate_response_stream(self, prompt: str, is_raw: bool = False) -> Generator[str, None, None]:
         try:
             from openai import OpenAI
-            client = OpenAI(base_url=self.API_BASE, api_key=self.api_key)
+            client = OpenAI(base_url=self.api_base, api_key=self.api_key)
 
             messages = self._build_messages(prompt, is_raw)
             stream = client.chat.completions.create(
@@ -288,29 +316,36 @@ class FireworksProvider:
 class LLMManager:
     """Manages the active LLM provider and dispatches inference calls."""
 
-    def __init__(self, fireworks_api_key: str = "", fireworks_model: str = ""):
-        self._fireworks_api_key = fireworks_api_key
-        self._fireworks_model = fireworks_model
+    def __init__(self, api_key: str = "", model: str = "",
+                 api_base: str = "", provider_name: str = "fireworks"):
+        self._api_key = api_key
+        self._model = model
+        self._api_base = api_base
+        self._provider_name = provider_name
         self._provider = None
         self._init_provider()
 
     def _init_provider(self):
-        logger.info(f"Initializing Fireworks AI provider (model={self._fireworks_model})")
-        self._provider = FireworksProvider(self._fireworks_api_key, self._fireworks_model)
+        logger.info(f"Initializing LLM provider '{self._provider_name}' "
+                    f"(model={self._model}, endpoint={self._api_base or OpenAICompatibleProvider.API_BASE})")
+        self._provider = OpenAICompatibleProvider(self._api_key, self._model, self._api_base or None)
 
-    def set_provider(self, fireworks_api_key: str = "", fireworks_model: str = ""):
-        """Hot-swap the LLM provider at runtime."""
-        self._fireworks_api_key = fireworks_api_key
-        self._fireworks_model = fireworks_model
+    def set_provider(self, api_key: str = "", model: str = "",
+                     api_base: str = "", provider_name: str = "fireworks"):
+        """Hot-swap the LLM provider/endpoint at runtime."""
+        self._api_key = api_key
+        self._model = model
+        self._api_base = api_base
+        self._provider_name = provider_name
         self._init_provider()
 
     @property
     def provider_name(self) -> str:
-        return "fireworks"
+        return self._provider_name
 
     @property
-    def model(self):
-        return None
+    def model(self) -> str:
+        return self._model
 
     def generate_response(self, prompt: str, is_raw: bool = False) -> str:
         return self._provider.generate_response(prompt, is_raw)

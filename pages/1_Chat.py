@@ -43,7 +43,7 @@ inject_custom_css()
 render_project_sidebar()
 
 from state.project_manager import project_manager
-from backend.controllers.chat_controller import ChatController
+from controllers.chat_controller import ChatController
 from core.config import settings
 
 # ──────────────────────────────────────────────────────────────
@@ -68,6 +68,8 @@ def clean_for_display(text: str) -> tuple[str, list[tuple[str, str]], list[dict]
 
     # Strip m2m tags
     response = re.sub(r'<m2m_request\s+[^>]*/\s*>', '', response)
+    # Strip zarr tags
+    response = re.sub(r'<zarr_request\s+[^>]*/\s*>', '', response)
     # Strip update_view tags
     response = re.sub(r'<update_view\s+[^/>]+/?>', '', response)
     # Strip search_instruments tags
@@ -341,6 +343,117 @@ for i, msg in enumerate(st.session_state.messages):
             project_manager.save_chat_history(pid, st.session_state.messages)
             st.rerun()
 
+    # Check for pending Cloud Zarr (fast path) approval in this message
+    if role == "assistant" and msg.get("zarr_pending"):
+        params = msg["zarr_pending"]
+        approval_key = msg.get("zarr_approval_key", f"zarr_{i}")
+        status = render_m2m_approval(params, approval_key, title="Cloud Zarr Data Request (Fast Path)")
+
+        if status == "accepted" and not msg.get("zarr_handled"):
+            msg["zarr_handled"] = True
+            # Fast path: open the cloud Zarr store, subset, and process inline.
+            with st.spinner("Loading from OOI cloud Zarr store (fast path — no THREDDS wait)..."):
+                try:
+                    from services.zarr_client import ZarrClient
+                    from services.data_processor import DataProcessor
+
+                    pid = st.session_state.current_project or "default"
+                    processed_dir = str(project_manager.get_processed_data_dir(pid))
+
+                    ds = ZarrClient().open_dataset(
+                        subsite=params["subsite"],
+                        node=params["node"],
+                        sensor=params["sensor"],
+                        method=params["method"],
+                        stream=params["stream"],
+                        begin_dt=params["begin_dt"],
+                        end_dt=params["end_dt"],
+                    )
+                    res = DataProcessor().process_dataset(ds, processed_dir)
+                    cols = ", ".join(res["variables"])
+                    netcdf_path = res["netcdf_path"]
+
+                    obs = (
+                        f"Observation (Cloud Zarr data imported — fast path, no THREDDS wait):\n"
+                        f"Data loaded directly from the OOI cloud Zarr store and processed to NetCDF at: `{netcdf_path}`\n"
+                        f"Available variables: {cols}\n"
+                        f"You can now generate a plot of this data using the <generate_plot> tool if requested."
+                    )
+                    st.success(f"Loaded from cloud Zarr store → `{netcdf_path}`")
+                except Exception as e:
+                    obs = f"Cloud Zarr load failed: {e}. You may retry with an <m2m_request> instead."
+                    st.error(f"Zarr load failed: {e}")
+
+            # Continue the agent loop with the observation (auto-plot, etc.)
+            llm_mgr = get_llm_manager(st)
+            pid = st.session_state.current_project or "default"
+            original_msg = st.session_state.messages[0]["content"] if st.session_state.messages else ""
+
+            accumulated = ""
+            with st.chat_message("assistant", avatar="🐟"):
+                placeholder = st.empty()
+                for event in agent_loop_with_m2m_continuation(
+                    message=original_msg,
+                    project_id=pid,
+                    llm_manager=llm_mgr,
+                    m2m_observation=obs,
+                    prior_accumulated=content,
+                    session_messages=st.session_state.messages,
+                ):
+                    if event["type"] == "token":
+                        accumulated += event["text"]
+                        display, _, _ = clean_for_display(accumulated)
+                        placeholder.markdown(f"<div class='msg-assistant'></div>\n{display}", unsafe_allow_html=True)
+                    elif event["type"] == "system":
+                        st.info(f"{event['text']}")
+                    elif event["type"] == "search_results":
+                        with st.expander("🔍 Instrument Search Results", expanded=False):
+                            st.code(event["text"], language=None)
+                    elif event["type"] == "update_view":
+                        vp = event["params"]
+                        if "plot" in vp:
+                            st.session_state.active_plot = vp["plot"]
+                        if "dataset" in vp:
+                            st.session_state.active_dataset = vp["dataset"]
+                        if "flowchart" in vp:
+                            st.session_state.active_flowchart = vp["flowchart"]
+                            project_manager.save_flowchart(pid, vp["flowchart"])
+                    elif event["type"] == "generate_plot":
+                        params = event["params"]
+                        dataset_file = params["dataset"]
+                        try:
+                            from streamlit_utils.plot_renderer import generate_and_save_plot
+                            from pathlib import Path
+                            plot_dir = Path(dataset_file.split(",")[0].strip()).parent.parent / "plots"
+                            plot_dir.mkdir(parents=True, exist_ok=True)
+                            import uuid
+                            plot_name = f"plot_{uuid.uuid4().hex[:8]}.png"
+                            params["force_plot_path"] = str(plot_dir / plot_name)
+                            plot_path_str = generate_and_save_plot(params)
+                            if plot_path_str:
+                                st.session_state.active_plot = plot_path_str
+                                st.image(plot_path_str)
+                                accumulated += f"\n\n[System: Plot saved to {plot_path_str} | Dataset: {dataset_file}]"
+                            else:
+                                st.error("Cannot generate plot: Columns missing or file missing.")
+                        except Exception as e:
+                            st.error(f"Plot generation failed: {e}")
+
+            if accumulated.strip():
+                st.session_state.messages.append({"role": "assistant", "content": accumulated})
+                project_manager.save_chat_history(pid, st.session_state.messages)
+            st.rerun()
+
+        elif status == "rejected" and not msg.get("zarr_handled"):
+            msg["zarr_handled"] = True
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": "The cloud Zarr data request was rejected.",
+            })
+            pid = st.session_state.current_project or "default"
+            project_manager.save_chat_history(pid, st.session_state.messages)
+            st.rerun()
+
     # Check for THREDDS import
     if role == "assistant" and msg.get("type") == "thredds_import":
         if not msg.get("imported"):
@@ -438,6 +551,7 @@ if prompt:
     accumulated = ""
     m2m_request_params = None
     m2m_accumulated = ""
+    zarr_request_params = None
 
     with st.chat_message("assistant", avatar="🐟"):
         placeholder = st.empty()
@@ -464,6 +578,10 @@ if prompt:
                 m2m_request_params = event["params"]
                 m2m_accumulated = event.get("accumulated", accumulated)
                 st.info("M2M data request detected — awaiting your approval below.")
+
+            elif event["type"] == "zarr_request":
+                zarr_request_params = event["params"]
+                st.info("Cloud Zarr (fast path) request detected — awaiting your approval below.")
 
             elif event["type"] == "generate_plot":
                 params = event["params"]
@@ -567,8 +685,14 @@ if prompt:
         msg_data["m2m_approval_key"] = approval_key
         msg_data["m2m_handled"] = False
 
+    if zarr_request_params:
+        approval_key = str(uuid.uuid4())[:8]
+        msg_data["zarr_pending"] = zarr_request_params
+        msg_data["zarr_approval_key"] = approval_key
+        msg_data["zarr_handled"] = False
+
     st.session_state.messages.append(msg_data)
     project_manager.save_chat_history(pid, st.session_state.messages)
 
-    if m2m_request_params:
+    if m2m_request_params or zarr_request_params:
         st.rerun()  # Rerun to render the approval widget

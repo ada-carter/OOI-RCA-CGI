@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ooi-rca-copilot"
+version = "0.1.0"
+description = "Domain-grounded LLM harness for accessing and analyzing OOI Regional Cabled Array data."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "RCA Data Team", email = "jduprey@uw.edu" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "streamlit",
+    "matplotlib",
+    "numpy>2",
+    "pandas>2",
+    "xarray>=2024.1.1",
+    "netcdf4",
+    "dask",
+    "fsspec",
+    "s3fs>=2024",
+    "zarr<3.0.0",
+    "requests",
+    "openai",
+    "chromadb",
+    "faiss-cpu",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "huggingface_hub",
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest", "flake8"]
+
+# The app uses top-level import roots (core, services, rag, state, db,
+# controllers, streamlit_utils). Mapping backend/* here makes them resolve from
+# the editable install, matching how the app already imports them.
+[tool.hatch.build.targets.wheel]
+packages = [
+    "backend/core",
+    "backend/services",
+    "backend/rag",
+    "backend/state",
+    "backend/db",
+    "backend/controllers",
+    "streamlit_utils",
+]
+
+[tool.ruff]
+line-length = 95
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = ["tests"]
